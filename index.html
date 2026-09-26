@@ -111,6 +111,37 @@
   .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sc-accent); flex: none; }
   .statusbar__now { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .statusbar__lang { margin-left: auto; flex: none; }
+  .steps { margin-left: auto; display: inline-flex; gap: 3px; flex: none; }
+  .steps i { width: 14px; height: 3px; border-radius: 2px; background: var(--sc-hairline-strong); transition: background-color 240ms var(--sc-ease-out); }
+  .steps i.done { background: color-mix(in oklab, var(--sc-accent) 45%, transparent); }
+  .steps i.now { background: var(--sc-accent); }
+  .steps + .statusbar__lang { margin-left: 0.9rem; }
+  .coach {
+    position: fixed; left: 50%; bottom: calc(var(--status-h) + 16px); z-index: 61;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 0.5rem 0.85rem 0.5rem 0.7rem; border-radius: 999px; cursor: pointer;
+    font: inherit; font-size: 0.82rem; color: var(--sc-ink);
+    background: color-mix(in oklab, var(--raise) 90%, transparent);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--sc-hairline-strong); box-shadow: var(--sc-e2);
+    opacity: 0; transform: translate(-50%, 8px); pointer-events: none;
+    transition: opacity 260ms var(--sc-ease-out), transform 260ms var(--sc-ease-out), border-color 180ms var(--sc-ease-out);
+  }
+  .coach.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .coach:hover { border-color: color-mix(in oklab, var(--sc-accent) 60%, transparent); }
+  .coach__icon { position: relative; flex: none; width: 15px; height: 23px; border: 1.5px solid var(--sc-ink-soft); border-radius: 9px; }
+  .coach__icon i { position: absolute; left: 50%; top: 4px; width: 2px; height: 5px; margin-left: -1px; border-radius: 2px; background: var(--sc-accent); animation: wheel 1.8s var(--sc-ease-out) infinite; }
+  @keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 65% { transform: translateY(8px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+  .coach kbd { font-family: var(--sc-font-mono); font-size: 0.66rem; line-height: 1; padding: 0.2rem 0.35rem; border-radius: 5px; border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink-soft); }
+  @media (hover: none), (pointer: coarse) { .coach kbd { display: none; } }
+  @media (min-width: 761px) {
+    .coach { bottom: 4px; gap: 0.5rem; padding: 0.12rem 0.65rem 0.12rem 0.45rem; font-size: 0.74rem; box-shadow: none; border-color: color-mix(in oklab, var(--sc-accent) 55%, transparent); background: color-mix(in oklab, var(--raise) 80%, var(--sc-accent) 8%); }
+    .coach__icon { width: 11px; height: 17px; border-radius: 7px; border-width: 1.2px; }
+    .coach__icon i { top: 3px; height: 4px; }
+    .coach kbd { padding: 0.1rem 0.3rem; font-size: 0.62rem; }
+    body.coach-on .statusbar__now { opacity: 0; }
+  }
+  .statusbar__now { transition: opacity 200ms var(--sc-ease-out); }
 
   /* --------------------------------------------------------------- stages */
   .stage { background: transparent; }
@@ -480,6 +511,8 @@
     .crumb .demo-tag { display: none; }
     .scene { max-height: 22%; }
     .langs button { min-width: 28px; padding-inline: 0.3rem; }
+    .coach { font-size: 0.78rem; max-width: calc(100vw - 24px); white-space: nowrap; }
+    .steps i { width: 10px; }
     .brand__name { font-size: 0.95rem; }
     .win--compose, .win--profile, .win--board, .win--enter, .win--help { grid-template-columns: 1fr; }
     .win--compose { grid-template-rows: auto 1fr; }
@@ -518,7 +551,7 @@
     #entrar .frame { bottom: calc(var(--status-h) + 52px); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .bars i, .caret { animation: none; }
+    .bars i, .caret, .coach__icon i { animation: none; }
     .swap { animation-duration: 1ms; }
     .plan li, .msg { transition: opacity 200ms linear; transform: none !important; }
   }
@@ -798,7 +831,7 @@
         </article>
 
         <article class="win act" aria-label="Idioma de las actividades">
-          <p class="label">Idiomas · 12 disponibles</p>
+          <p class="label">Idiomas · 13 disponibles</p>
           <p class="act__q">Los botones de cada actividad salen en el idioma de tu curso.</p>
           <label class="langsel"><span>Idioma</span>
             <select data-lang data-no-i18n>
@@ -807,6 +840,7 @@
               <option value="pt-BR">Português (Brasil)</option>
               <option value="fr-FR">Français</option>
               <option value="de-DE">Deutsch</option>
+              <option value="ro-RO">Română</option>
               <option value="ru-RU">Русский</option>
               <option value="ja-JP">日本語</option>
               <option value="ko-KR">한국어</option>
@@ -820,7 +854,7 @@
             <p class="mock__q" data-mock-q></p>
             <div class="mock__bar"><span class="btn btn--line" data-l="prev"></span><span class="btn btn--solid" data-l="check"></span><span class="btn btn--line" data-l="next"></span></div>
           </div>
-          <p class="feedback">La interfaz completa de la plataforma también está en estos 12 idiomas.</p>
+          <p class="feedback">La interfaz completa de la plataforma también está en estos 13 idiomas.</p>
         </article>
       </div>
     </div>
@@ -845,7 +879,7 @@
             <div class="row"><dt><kbd>05</kbd>Pregunta con tu voz</dt><dd>Habla o escribe en medio de la clase y te responden en el momento.</dd></div>
             <div class="row"><dt><kbd>06</kbd>Actividades interactivas</dt><dd>Quizzes que califican, simulaciones, juegos, visualizaciones 3D, mapas mentales y programación en línea.</dd></div>
             <div class="row"><dt><kbd>07</kbd>Aprendizaje por proyectos</dt><dd>Retos tipo proyecto para aplicar lo aprendido, no solo repasarlo.</dd></div>
-            <div class="row"><dt><kbd>08</kbd>12 idiomas</dt><dd>Interfaz y cursos en español, inglés, portugués, francés, alemán, ruso, japonés, coreano, chino, vietnamita y árabe.</dd></div>
+            <div class="row"><dt><kbd>08</kbd>13 idiomas</dt><dd>Interfaz y cursos en español, inglés, portugués, francés, alemán, ruso, japonés, coreano, chino, vietnamita, árabe y rumano.</dd></div>
             <div class="row"><dt><kbd>09</kbd>Llévatelo</dt><dd>Exporta tus diapositivas editables en .pptx o páginas interactivas en .html.</dd></div>
             <div class="row"><dt><kbd>10</kbd>Hecho en UETC</dt><dd>Nace de la metodología de gamedev de UETC y Arden A.C. Sirve para Unreal y para cualquier cosa que quieras aprender.</dd></div>
             <div class="row"><dt><kbd>11</kbd>Acceso</dt><dd>Beta para miembros del Club UETC. Unirte al Club es gratis.</dd></div>
@@ -899,8 +933,11 @@
 <footer class="statusbar" aria-label="Estado">
   <span class="statusbar__demo"><span class="dot"></span><span data-demo>Demostración con datos de ejemplo</span></span>
   <span class="statusbar__now" data-now>Clase 3 de 6 · Profe Echo está explicando</span>
+  <span class="steps" data-steps aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
   <span class="statusbar__lang" data-langtag data-no-i18n>es-MX</span>
 </footer>
+
+<button type="button" class="coach" data-coach data-no-i18n aria-live="polite"><span class="coach__icon" aria-hidden="true"><i></i></span><span data-coach-text></span><kbd aria-hidden="true">↓</kbd></button>
 
 <script src="scrollcraft.js"></script>
 <script src="i18n.js"></script>
@@ -929,7 +966,8 @@
     'zh-CN': ['第 1 题，共 3 题', '上一步', '检查', '下一步'],
     'zh-TW': ['第 1 題，共 3 題', '上一步', '檢查', '下一步'],
     'vi-VN': ['Câu 1 / 3', 'Trước', 'Kiểm tra', 'Tiếp theo'],
-    'ar-SA': ['السؤال 1 من 3', 'السابق', 'تحقّق', 'التالي']
+    'ar-SA': ['السؤال 1 من 3', 'السابق', 'تحقّق', 'التالي'],
+    'ro-RO': ['Întrebarea 1 din 3', 'Înapoi', 'Verifică', 'Înainte']
   };
 
   /* ------------------------------------------ act 1 · clase (runs on its own) */
@@ -1156,7 +1194,7 @@
     if (manual && manualKey) { setBio(D.profiles[manualKey].text); applied = null; apply(manualKey); }
     else if (manual && typedOwn) { fromOwnText(); }
     else { applied = null; }
-    last = {}; current = '';
+    last = {}; current = ''; if (coachOn) coachText.textContent = D.hint[coachFor] || '';
   }
   langBtns.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.setlang !== LANG) setLang(b.dataset.setlang, true); }); });
 
@@ -1166,6 +1204,23 @@
   var sections = $$('main > section');
   var tabs = $$('[data-tab]'), nowEl = $('[data-now]'), demoEl = $('[data-demo]'), current = '';
   var heroEl = document.getElementById('clase');
+  var coach = $('[data-coach]'), coachText = $('[data-coach-text]'), steps = $$('[data-steps] i');
+  var lastMove = performance.now(), coachShown = {}, coachOn = false, coachFor = '';
+  function hideCoach() { if (coachOn) { coach.classList.remove('on'); document.body.classList.remove('coach-on'); coachOn = false; } }
+  addEventListener('scroll', function () { lastMove = performance.now(); hideCoach(); }, { passive: true });
+  addEventListener('keydown', function () { lastMove = performance.now(); hideCoach(); });
+  coach.addEventListener('click', function () { hideCoach(); scrollBy({ top: Math.round(innerHeight * 0.85), behavior: reduce ? 'auto' : 'smooth' }); });
+  function coachTick(now, active) {
+    var text = D.hint[active];
+    var s = document.getElementById(active), p = progOf(s);
+    var pinned = s.getAttribute('data-sc-act') !== 'flow';
+    var wait = coachShown[active] ? 6500 : (active === 'clase' ? 1800 : 3500);
+    var want = !!text && (!pinned || p < 0.92) && (coachShown[active] || 0) < 2 && now - lastMove > wait;
+    if (want && !coachOn) {
+      coachText.textContent = text; coachFor = active;
+      coach.classList.add('on'); document.body.classList.add('coach-on'); coachOn = true; coachShown[active] = (coachShown[active] || 0) + 1;
+    } else if (coachOn && (coachFor !== active || !text)) hideCoach();
+  }
   function progOf(el) { var v = parseFloat(el.style.getPropertyValue('--sc-p')); return isNaN(v) ? 0 : v; }
   function frame(now) {
     var vh = innerHeight, active = sections[0].id;
@@ -1180,10 +1235,13 @@
     });
     var hr = heroEl.getBoundingClientRect();
     if (hr.bottom > 0 && hr.top < vh) heroTick(now);
+    coachTick(now, active);
     if (active !== current) {
       current = active;
       tabs.forEach(function (t) { t.setAttribute('aria-current', t.dataset.tab === active ? 'true' : 'false'); });
       nowEl.textContent = D.status[active] || '';
+      var ai = sections.findIndex(function (x) { return x.id === active; });
+      steps.forEach(function (st, i) { st.classList.toggle('now', i === ai); st.classList.toggle('done', i < ai); });
       demoEl.textContent = active === 'entrar' ? D.ui.real : D.ui.demo;
     }
     requestAnimationFrame(frame);

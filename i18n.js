@@ -120,9 +120,9 @@
     'Impulso de salto': ['Jump impulse', 'Impulsul săriturii'],
     'Gravedad': ['Gravity', 'Gravitație'],
     'Idioma de las actividades': ['Activity language', 'Limba activităților'],
-    'Idiomas · 12 disponibles': ['Languages · 12 available', 'Limbi · 12 disponibile'],
+    'Idiomas · 13 disponibles': ['Languages · 13 available', 'Limbi · 13 disponibile'],
     'Los botones de cada actividad salen en el idioma de tu curso.': ['Each activity’s buttons show up in your course’s language.', 'Butoanele fiecărei activități apar în limba cursului tău.'],
-    'La interfaz completa de la plataforma también está en estos 12 idiomas.': ['The full platform interface is also available in these 12 languages.', 'Interfața completă a platformei este disponibilă în aceste 12 limbi.'],
+    'La interfaz completa de la plataforma también está en estos 13 idiomas.': ['The full platform interface is also available in these 13 languages.', 'Interfața completă a platformei este disponibilă în aceste 13 limbi.'],
 
     'Qué hace EchoMentor AI': ['What EchoMentor AI does', 'Ce face EchoMentor AI'],
     'Todo lo que viste arriba, en una lista. Filtra por lo que te interesa.': ['Everything you saw above, in one list. Filter by what you care about.', 'Tot ce ai văzut mai sus, într-o listă. Filtrează după ce te interesează.'],
@@ -141,8 +141,8 @@
     'Quizzes que califican, simulaciones, juegos, visualizaciones 3D, mapas mentales y programación en línea.': ['Quizzes that grade, simulations, games, 3D visualizations, mind maps and online coding.', 'Quizuri care notează, simulări, jocuri, vizualizări 3D, hărți mentale și programare online.'],
     'Aprendizaje por proyectos': ['Project-based learning', 'Învățare prin proiecte'],
     'Retos tipo proyecto para aplicar lo aprendido, no solo repasarlo.': ['Project-style challenges to apply what you learned, not just review it.', 'Provocări de tip proiect ca să aplici ce ai învățat, nu doar să recapitulezi.'],
-    '12 idiomas': ['12 languages', '12 limbi'],
-    'Interfaz y cursos en español, inglés, portugués, francés, alemán, ruso, japonés, coreano, chino, vietnamita y árabe.': ['Interface and courses in Spanish, English, Portuguese, French, German, Russian, Japanese, Korean, Chinese, Vietnamese and Arabic.', 'Interfață și cursuri în spaniolă, engleză, portugheză, franceză, germană, rusă, japoneză, coreeană, chineză, vietnameză și arabă.'],
+    '13 idiomas': ['13 languages', '13 limbi'],
+    'Interfaz y cursos en español, inglés, portugués, francés, alemán, ruso, japonés, coreano, chino, vietnamita, árabe y rumano.': ['Interface and courses in Spanish, English, Portuguese, French, German, Russian, Japanese, Korean, Chinese, Vietnamese, Arabic and Romanian.', 'Interfață și cursuri în spaniolă, engleză, portugheză, franceză, germană, rusă, japoneză, coreeană, chineză, vietnameză, arabă și română.'],
     'Llévatelo': ['Take it with you', 'Ia-l cu tine'],
     'Exporta tus diapositivas editables en .pptx o páginas interactivas en .html.': ['Export editable slides as .pptx or interactive pages as .html.', 'Exportă slide-uri editabile în .pptx sau pagini interactive în .html.'],
     'Hecho en UETC': ['Made at UETC', 'Făcut la UETC'],
@@ -189,6 +189,7 @@
       msg: { invalido: 'Ese código no funcionó. Revísalo en el Club UETC e intenta de nuevo.', espera: 'Demasiados intentos seguidos. Espera un minuto y vuelve a intentar.', origen: 'No pudimos validar desde esta página. Abre la plataforma directo e ingresa ahí.' },
       ui: { demo: 'Demostración con datos de ejemplo', real: 'Acceso real a la plataforma', hold: 'Mantén presionado para hablar', listening: 'Escuchando…', typing: 'Sigue escribiendo: nivel, meta, tiempo', adapted: 'Adaptado a tu texto', entering: 'Entrando…', emptyCode: 'Escribe tu código de miembro.', edit: 'Editar temario', done: 'Listo', courseLang: 'Español (México)', panelLang: 'es-MX', waiting: 'Esperando tu tema' },
       quiz: { right: '<b>Correcto.</b> BeginOverlap se dispara en el momento en que el jugador entra al área.', wrong: '<b>Casi.</b> ', why: { 0: 'Tick corre cada frame, no cuando alguien entra.', 2: 'BeginPlay corre una vez, cuando arranca el nivel.', 3: 'Toggle Visibility es la acción, no el evento que la dispara.' }, answer: ' La respuesta es BeginOverlap.' },
+      hint: { clase: 'Desliza para ver cómo funciona', temario: 'Sigue bajando: el temario se arma solo', perfil: 'Sigue bajando y mira cómo se reescribe tu curso', pizarron: 'Sigue bajando: el profe termina el dibujo', actividades: 'Sigue bajando para recorrer las actividades' },
       sim: { max: 'Altura máxima: ', reach: 'Alcanzas la plataforma.', short: function (n) { return 'Te faltan ' + n + ' cm.'; }, note: ' Gravedad por defecto de Unreal: 980 cm/s².' }
     },
     en: {
@@ -207,6 +208,7 @@
       msg: { invalido: 'That code didn’t work. Check it in the Club UETC and try again.', espera: 'Too many attempts in a row. Wait a minute and try again.', origen: 'We couldn’t validate from this page. Open the platform directly and sign in there.' },
       ui: { demo: 'Demo with sample data', real: 'Real access to the platform', hold: 'Hold to talk', listening: 'Listening…', typing: 'Keep typing: level, goal, time', adapted: 'Adapted to your text', entering: 'Signing in…', emptyCode: 'Type your member code.', edit: 'Edit syllabus', done: 'Done', courseLang: 'English', panelLang: 'en-US', waiting: 'Waiting for your topic' },
       quiz: { right: '<b>Correct.</b> BeginOverlap fires the moment the player walks into the area.', wrong: '<b>Almost.</b> ', why: { 0: 'Tick runs every frame, not when someone walks in.', 2: 'BeginPlay runs once, when the level starts.', 3: 'Toggle Visibility is the action, not the event that triggers it.' }, answer: ' The answer is BeginOverlap.' },
+      hint: { clase: 'Scroll to see how it works', temario: 'Keep scrolling: the syllabus builds itself', perfil: 'Keep scrolling and watch your course rewrite itself', pizarron: 'Keep scrolling: the teacher finishes the drawing', actividades: 'Keep scrolling to browse the activities' },
       sim: { max: 'Max height: ', reach: 'You reach the platform.', short: function (n) { return 'You are ' + n + ' cm short.'; }, note: ' Unreal’s default gravity: 980 cm/s².' }
     },
     ro: {
@@ -223,8 +225,9 @@
       },
       status: { clase: 'Lecția 3 din 6 · Prof. Echo explică', temario: 'Curs nou · se generează programa', perfil: 'Profilul cursantului · cursul se adaptează la ce scrii', pizarron: 'Tablă live · Prof. Echo, Lía și Tomás', actividades: 'Activități interactive · quiz, simulare, limbi', ayuda: 'Ajutor · ce face EchoMentor AI', entrar: 'Acces pentru membrii Club UETC' },
       msg: { invalido: 'Codul nu a funcționat. Verifică-l în Club UETC și încearcă din nou.', espera: 'Prea multe încercări la rând. Așteaptă un minut și încearcă din nou.', origen: 'Nu am putut valida de pe această pagină. Deschide direct platforma și intră de acolo.' },
-      ui: { demo: 'Demo cu date de exemplu', real: 'Acces real la platformă', hold: 'Ține apăsat ca să vorbești', listening: 'Ascult…', typing: 'Continuă să scrii: nivel, obiectiv, timp', adapted: 'Adaptat la textul tău', entering: 'Se intră…', emptyCode: 'Scrie codul tău de membru.', edit: 'Editează programa', done: 'Gata', courseLang: 'Română', panelLang: 'en-US', waiting: 'Aștept subiectul tău' },
+      ui: { demo: 'Demo cu date de exemplu', real: 'Acces real la platformă', hold: 'Ține apăsat ca să vorbești', listening: 'Ascult…', typing: 'Continuă să scrii: nivel, obiectiv, timp', adapted: 'Adaptat la textul tău', entering: 'Se intră…', emptyCode: 'Scrie codul tău de membru.', edit: 'Editează programa', done: 'Gata', courseLang: 'Română', panelLang: 'ro-RO', waiting: 'Aștept subiectul tău' },
       quiz: { right: '<b>Corect.</b> BeginOverlap se declanșează în momentul în care jucătorul intră în zonă.', wrong: '<b>Aproape.</b> ', why: { 0: 'Tick rulează la fiecare frame, nu când intră cineva.', 2: 'BeginPlay rulează o singură dată, când pornește nivelul.', 3: 'Toggle Visibility este acțiunea, nu evenimentul care o declanșează.' }, answer: ' Răspunsul este BeginOverlap.' },
+      hint: { clase: 'Derulează ca să vezi cum funcționează', temario: 'Continuă să derulezi: programa se construiește singură', perfil: 'Continuă să derulezi și vezi cum se rescrie cursul', pizarron: 'Continuă să derulezi: profesorul termină desenul', actividades: 'Continuă să derulezi ca să vezi activitățile' },
       sim: { max: 'Înălțime maximă: ', reach: 'Ajungi pe platformă.', short: function (n) { return 'Îți lipsesc ' + n + ' cm.'; }, note: ' Gravitația implicită în Unreal: 980 cm/s².' }
     }
   };

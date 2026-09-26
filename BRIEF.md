@@ -75,3 +75,9 @@ Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; work
 - Hero now runs on its own: a live simulation (player enters the area, the Blueprint lights up node by node, the lamp turns on), the teacher caption types, the class chat fills in.
 - Windows capped at 860px and centered, so tall screens no longer show empty panels. Syllabus pane shows skeleton rows before generating. Whiteboard has a dot grid.
 - Romanian is a landing language; the platform interface itself has 12 languages and Romanian is not one of them yet (the page says so by listing the 12).
+
+## v1.2 (2026-09-26): scroll hint + 13 languages
+
+- Scroll hint in the product's own idiom, not a bouncing arrow: an in-app coach mark in the status bar (desktop) or a floating pill (phone) with a wheel icon and a line specific to each act ("Sigue bajando: el temario se arma solo"). Appears after a few idle seconds, hides the moment you scroll, at most twice per act, click to advance. Respects reduced motion.
+- Section stepper (7 segments) in the status bar so you always know how much is left.
+- Platform v1.6.0 added Romanian, so the landing now says 13 languages and the language panel includes Română.
