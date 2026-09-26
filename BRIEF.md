@@ -68,3 +68,10 @@ Feature claims were checked against the running platform on 2026-09-26.
 `<form method="post" action="https://uetc.jorgesuarez.com.mx/api/access-code/enter">` (platform v1.4.0).
 Validates the code server-side, sets the signed session cookie, 303 into the app.
 Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; works without JavaScript.
+
+## v1.1 (2026-09-26): trilingual + fuller surface
+
+- ES · EN · RO with live switching (no reload, no layout jump), browser detection, `?lang=` links, hreflang.
+- Hero now runs on its own: a live simulation (player enters the area, the Blueprint lights up node by node, the lamp turns on), the teacher caption types, the class chat fills in.
+- Windows capped at 860px and centered, so tall screens no longer show empty panels. Syllabus pane shows skeleton rows before generating. Whiteboard has a dot grid.
+- Romanian is a landing language; the platform interface itself has 12 languages and Romanian is not one of them yet (the page says so by listing the 12).

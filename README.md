@@ -6,6 +6,8 @@ Landing pública de **EchoMentor AI**, la plataforma de aprendizaje adaptativo c
 
 La página se comporta como el producto: una clase ya corriendo, un temario que se arma solo, un perfil del Aprendiz que reescribe el curso, un pizarrón que se dibuja y actividades que funcionan de verdad. Todo con datos de ejemplo, marcado como demo en la propia página.
 
+Disponible en **español, inglés y rumano**: selector ES · EN · RO en la barra, detección automática del idioma del navegador y enlaces directos con `?lang=es`, `?lang=en` o `?lang=ro`.
+
 ## Cómo entran los miembros
 
 El formulario de acceso hace un `POST` normal (funciona sin JavaScript) al conector de la plataforma. La plataforma valida el código, deja la sesión iniciada y entra directo. El código nunca viaja en la URL y la landing no tiene backend.
@@ -17,6 +19,7 @@ El formulario de acceso hace un `POST` normal (funciona sin JavaScript) al conec
 | Archivo | Qué es |
 |---|---|
 | `index.html` | La página completa: marcado, estilos y lógica de la demo |
+| `i18n.js` | Traducciones (es · en · ro) y datos de la demo por idioma |
 | `scrollcraft.js` / `scrollcraft.css` | Motor de scroll, sin modificar |
 | `assets/` | Marca UETC, favicon e imagen para compartir |
 | `BRIEF.md` | Brief de diseño: gramática, curva de emoción, pico y movimiento firma |

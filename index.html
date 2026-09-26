@@ -20,6 +20,10 @@
 <meta property="og:description" content="Plataforma de aprendizaje adaptativo con IA. Escribe quién eres y el curso entero se reescribe para ti.">
 <meta property="og:image" content="https://echomentor.jorgesuarez.com.mx/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="es" href="https://echomentor.jorgesuarez.com.mx/?lang=es">
+<link rel="alternate" hreflang="en" href="https://echomentor.jorgesuarez.com.mx/?lang=en">
+<link rel="alternate" hreflang="ro" href="https://echomentor.jorgesuarez.com.mx/?lang=ro">
+<link rel="alternate" hreflang="x-default" href="https://echomentor.jorgesuarez.com.mx/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=swap">
@@ -86,6 +90,15 @@
     transition: transform 160ms var(--sc-ease-out);
   }
   .appbar__enter:active { transform: scale(0.97); }
+  .langs { margin-left: auto; display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--sc-hairline-strong); border-radius: 9px; }
+  .langs button {
+    height: 24px; min-width: 32px; padding-inline: 0.45rem; border: 0; border-radius: 6px; cursor: pointer;
+    font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--sc-ink-soft); background: transparent;
+    transition: background-color 160ms var(--sc-ease-out), color 160ms var(--sc-ease-out);
+  }
+  .langs button:hover { color: var(--sc-ink); }
+  .langs button[aria-pressed="true"] { background: var(--raise); color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
+  .langs + .appbar__enter { margin-left: 0.6rem; }
 
   .statusbar {
     position: fixed; inset: auto 0 0 0; height: var(--status-h); z-index: 60;
@@ -113,6 +126,8 @@
     box-shadow: var(--sc-edge), var(--sc-e3);
     overflow: hidden;
   }
+  .frame { justify-content: center; }
+  .frame > .win { max-height: 860px; }
   .pane { padding: clamp(14px, 1.6vw, 22px); min-height: 0; }
   .pane + .pane { border-left: 1px solid var(--sc-hairline); }
   .demo-tag {
@@ -133,7 +148,12 @@
   .outline li.done .n { color: var(--sc-accent); }
   .outline li.now { background: var(--accent-wash); color: var(--sc-ink); }
   .outline li.now .n { color: var(--sc-accent); }
+  .outline { display: flex; flex-direction: column; }
   .outline .meta { margin-top: 1rem; font-size: 0.78rem; color: var(--sc-ink-soft); }
+  .mini-prof { margin-top: auto; padding: 0.85rem 0.9rem; border-radius: 12px; background: var(--well); border: 1px solid var(--sc-hairline); display: grid; gap: 0.5rem; }
+  .mini-prof p { margin: 0; }
+  .mini-prof__q { font-size: 0.86rem; line-height: 1.45; color: var(--sc-ink); }
+  .mini-prof .badge { justify-self: start; }
 
   .slide { display: flex; flex-direction: column; gap: 0.9rem; background: var(--well); }
   .crumb { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
@@ -148,13 +168,32 @@
     font-size: clamp(1.45rem, 1rem + 1.6vw, 2.35rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 22ch;
   }
   .slide__lede { margin: 0; color: var(--sc-ink-soft); max-width: 46ch; font-size: 0.98rem; }
-  .bp { width: 100%; height: auto; margin-top: auto; max-height: 42%; }
+  .bp { width: 100%; height: auto; margin-top: auto; max-height: 34%; }
+  .bp .node, .bp .hd, .bp .wire { transition: stroke 200ms var(--sc-ease-out), fill 200ms var(--sc-ease-out); }
+  .bp .node.on { stroke: var(--sc-accent); }
+  .bp .hd.on { fill: color-mix(in oklab, var(--sc-accent) 55%, var(--sc-surface)); }
+  .bp .wire { stroke: color-mix(in oklab, var(--sc-accent) 35%, transparent); }
+  .bp .wire.on { stroke: var(--sc-accent); }
+  .scene { width: 100%; height: auto; max-height: 26%; border-top: 1px solid var(--sc-hairline); padding-top: 0.6rem; }
+  .scene .floor { stroke: var(--sc-hairline-strong); stroke-width: 2; }
+  .scene .zone { fill: color-mix(in oklab, var(--sc-accent) 7%, transparent); stroke: color-mix(in oklab, var(--sc-accent) 55%, transparent); stroke-dasharray: 5 5; }
+  .scene .zone.on { fill: color-mix(in oklab, var(--sc-accent) 16%, transparent); }
+  .scene .lamp { stroke: var(--sc-ink-soft); stroke-width: 2; fill: none; }
+  .scene .bulb { fill: var(--sc-surface); stroke: var(--sc-ink-soft); stroke-width: 2; transition: fill 160ms var(--sc-ease-out), stroke 160ms var(--sc-ease-out); }
+  .scene .bulb.lit { fill: var(--sc-accent); stroke: var(--sc-accent); }
+  .scene .cone { fill: color-mix(in oklab, var(--sc-accent) 14%, transparent); opacity: 0; transition: opacity 160ms var(--sc-ease-out); }
+  .scene .cone.lit { opacity: 1; }
+  .scene .player { fill: var(--sc-ink); }
+  .scene text { fill: var(--sc-ink-soft); font-family: var(--sc-font-mono); font-size: 11px; }
+  .scene .tag { fill: var(--sc-accent); }
+  .speaker__prog { grid-column: 1 / -1; height: 2px; border-radius: 2px; background: var(--sc-hairline); overflow: hidden; }
+  .speaker__prog i { display: block; height: 100%; background: var(--sc-accent); transform-origin: 0 50%; transform: scaleX(0.3); }
   .bp .node { fill: var(--raise); stroke: var(--sc-hairline-strong); }
   .bp .node--ev { stroke: color-mix(in oklab, var(--sc-accent) 70%, transparent); }
   .bp .hd { fill: color-mix(in oklab, var(--sc-accent) 22%, var(--sc-surface)); }
   .bp text { fill: var(--sc-ink); font-family: var(--sc-font-mono); font-size: 12px; }
   .bp .sub { fill: var(--sc-ink-soft); font-size: 11px; }
-  .bp .wire { fill: none; stroke: var(--sc-accent); stroke-width: 2; }
+  .bp .wire { fill: none; stroke-width: 2; }
   .bp .pin { fill: var(--sc-accent); }
   .speaker {
     display: grid; grid-template-columns: auto 1fr auto; gap: 0.8rem; align-items: center;
@@ -194,21 +233,21 @@
   .mic.on { background: var(--sc-accent); color: var(--sc-accent-ink); border-color: transparent; }
 
   .tip {
-    position: absolute; z-index: 5; right: 26px; top: 64px;
-    width: min(31rem, calc(100% - 36px));
-    padding: 1.15rem 1.25rem 1.1rem; border-radius: 16px;
+    flex: none;
+    padding: 1.05rem 1.1rem 1rem; border-radius: 16px;
     background: color-mix(in oklab, var(--raise) 94%, var(--sc-accent) 6%);
     border: 1px solid color-mix(in oklab, var(--sc-accent) 45%, transparent);
     box-shadow: var(--sc-e3);
   }
   .tip h1 {
     margin: 0 0 0.5rem; font-family: var(--sc-font-display); font-stretch: 110%; font-weight: 700;
-    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.6rem); letter-spacing: -0.015em; line-height: 1.12;
+    font-size: clamp(1.2rem, 0.95rem + 0.7vw, 1.5rem); letter-spacing: -0.015em; line-height: 1.12; text-wrap: balance;
   }
   .tip h1 b { color: var(--sc-accent); font-weight: 700; }
-  .tip p { margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--sc-ink); }
+  .tip p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--sc-ink); }
   .tip .tip__s { margin-top: 0.75rem; font-family: var(--sc-font-mono); font-size: 0.7rem; color: var(--sc-ink-soft); }
   .tip__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+  .tip__actions .btn { flex: 1 1 auto; }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
@@ -238,6 +277,7 @@
   .gen { display: flex; flex-direction: column; gap: 0.9rem; background: var(--well); }
   .log { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; font-family: var(--sc-font-mono); font-size: 0.76rem; color: var(--sc-ink-soft); }
   .log li { display: flex; gap: 0.6rem; }
+  .log li[hidden] { display: none; }
   .log li::before { content: "·"; color: var(--sc-accent); }
   .log li.ok::before { content: "✓"; }
   .plan { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
@@ -247,7 +287,10 @@
     font-size: 0.92rem;
     transition: opacity 240ms var(--sc-ease-out), transform 240ms var(--sc-ease-out);
   }
-  .plan li.off { opacity: 0; transform: translateY(6px); }
+  .plan li .t, .plan li .kind { transition: color 240ms var(--sc-ease-out), background-color 240ms var(--sc-ease-out); }
+  .plan li.off { opacity: 0.5; }
+  .plan li.off .t, .plan li.off .kind { color: transparent; background: var(--sc-hairline); border-radius: 5px; border-color: transparent; }
+  .plan li.off .n { color: var(--sc-ink-soft); }
   .plan .n { font-family: var(--sc-font-mono); font-size: 0.74rem; color: var(--sc-accent); }
   .kind { font-family: var(--sc-font-mono); font-size: 0.68rem; color: var(--sc-ink-soft); border: 1px solid var(--sc-hairline); border-radius: 6px; padding: 0.1rem 0.45rem; white-space: nowrap; }
   .gen__done { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; justify-content: space-between; font-size: 0.86rem; transition: opacity 240ms var(--sc-ease-out); }
@@ -303,7 +346,8 @@
   /* ---------------------------------------------------------- 4 · PIZARRÓN */
   .win--board { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr); }
   .board { display: flex; flex-direction: column; gap: 0.8rem; background: var(--well); }
-  .board svg { flex: 1; min-height: 0; width: 100%; }
+  .board svg { flex: 1; min-height: 0; width: 100%; border-radius: 12px;
+    background-image: radial-gradient(color-mix(in oklab, var(--sc-ink) 9%, transparent) 1px, transparent 1.2px); background-size: 22px 22px; }
   .wb .ln { fill: none; stroke: var(--sc-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
   .wb .ln--acc { stroke: var(--sc-accent); }
   .wb .ln--dash { stroke: var(--sc-accent); stroke-dasharray: 0.02 0.018; }
@@ -408,7 +452,6 @@
   @media (max-width: 1100px) {
     .win--class { grid-template-columns: 1fr minmax(15rem, 19rem); }
     .win--class .outline { display: none; }
-    .tip { right: 18px; top: 58px; }
   }
   @media (max-width: 760px) {
     :root { --bar-h: 50px; --status-h: 26px; }
@@ -417,16 +460,27 @@
     .frame { inset: calc(var(--bar-h) + 8px) 10px calc(var(--status-h) + 8px); }
     .pane { padding: 12px; }
     .pane + .pane { border-left: 0; border-top: 1px solid var(--sc-hairline); }
-    .win--class { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .win--class { grid-template-columns: 1fr; }
     .slide { gap: 0.6rem; }
     .slide__canvas { padding: 14px; gap: 0.5rem; }
     .slide__lede { font-size: 0.88rem; }
     .bp { max-height: 30%; }
     .speaker { padding: 0.55rem 0.65rem; }
     .speaker p { font-size: 0.84rem; }
-    .win--class .chat { display: none; }
-    .tip { left: 10px; right: 10px; top: auto; width: auto; bottom: 10px; padding: 0.95rem 1rem; }
-    .tip p { font-size: 0.9rem; }
+    .win--class { grid-template-rows: auto 1fr; }
+    .win--class .chat { order: -1; border-top: 0; border-bottom: 1px solid var(--sc-hairline); }
+    .win--class .chat > :not(.tip) { display: none; }
+    .tip { padding: 0.85rem 0.95rem; }
+    .tip h1 { font-size: 1.2rem; }
+    .tip p { font-size: 0.86rem; }
+    .tip .tip__s { display: none; }
+    .tip__actions { margin-top: 0.6rem; }
+    .tip__actions .btn { height: 34px; }
+    .slide__title { font-size: 1.3rem; }
+    .crumb .demo-tag { display: none; }
+    .scene { max-height: 22%; }
+    .langs button { min-width: 28px; padding-inline: 0.3rem; }
+    .brand__name { font-size: 0.95rem; }
     .win--compose, .win--profile, .win--board, .win--enter, .win--help { grid-template-columns: 1fr; }
     .win--compose { grid-template-rows: auto 1fr; }
     .compose { gap: 0.6rem; padding-block: 14px; }
@@ -487,13 +541,18 @@
     <a href="#actividades" data-tab="actividades">Actividades</a>
     <a href="#ayuda" data-tab="ayuda">Ayuda</a>
   </nav>
+  <div class="langs" role="group" aria-label="Idioma" data-no-i18n>
+    <button type="button" data-setlang="es" aria-pressed="false" lang="es">ES</button>
+    <button type="button" data-setlang="en" aria-pressed="false" lang="en">EN</button>
+    <button type="button" data-setlang="ro" aria-pressed="false" lang="ro">RO</button>
+  </div>
   <a class="appbar__enter" href="#entrar">Entrar</a>
 </header>
 
 <main>
 
   <!-- 1 · CURIOSITY: a class already running -->
-  <section id="clase" data-sc-act="pin" data-sc-span="1.6" data-sc-drift="#0c0e0b">
+  <section id="clase" data-sc-act="pin" data-sc-span="1.3" data-sc-drift="#0c0e0b">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--class" data-state="clase">
@@ -508,6 +567,11 @@
               <li><span class="n">06</span><span>Proyecto: un nivel jugable</span></li>
             </ol>
             <p class="meta">Perfil: principiante · sesiones de 20 min</p>
+            <div class="mini-prof">
+              <p class="label">Tu perfil</p>
+              <p class="mini-prof__q">“Soy diseñadora y nunca he programado.”</p>
+              <span class="badge on">Clase adaptada</span>
+            </div>
           </aside>
           <div class="pane slide">
             <div class="crumb"><p class="label">Clase 3 de 6</p><span class="demo-tag"><span class="dot"></span>Demo con datos de ejemplo</span></div>
@@ -516,41 +580,55 @@
               <p class="slide__title">Blueprints: tu primer interruptor</p>
               <p class="slide__lede">Cuando el jugador entra al área, la luz cambia. Tres nodos y cero líneas de código.</p>
               <svg class="bp" viewBox="0 0 620 150" role="img" aria-label="Diagrama: evento de entrada, cambiar visibilidad, luz">
-                <rect class="node node--ev" x="4" y="30" width="170" height="86" rx="10"/><rect class="hd" x="4" y="30" width="170" height="26" rx="10"/>
+                <rect class="node node--ev" data-bp="0" x="4" y="30" width="170" height="86" rx="10"/><rect class="hd" data-bp="0" x="4" y="30" width="170" height="26" rx="10"/>
                 <text x="16" y="48">Event BeginOverlap</text><text class="sub" x="16" y="82">al entrar al área</text>
-                <path class="wire" d="M174 90 C 214 90, 214 90, 226 90"/><circle class="pin" cx="226" cy="90" r="4"/>
-                <rect class="node" x="226" y="30" width="170" height="86" rx="10"/><rect class="hd" x="226" y="30" width="170" height="26" rx="10"/>
+                <path class="wire" data-bp="1" d="M174 90 C 214 90, 214 90, 226 90"/><circle class="pin" cx="226" cy="90" r="4"/>
+                <rect class="node" data-bp="1" x="226" y="30" width="170" height="86" rx="10"/><rect class="hd" data-bp="1" x="226" y="30" width="170" height="26" rx="10"/>
                 <text x="238" y="48">Toggle Visibility</text><text class="sub" x="238" y="82">prende o apaga</text>
-                <path class="wire" d="M396 90 C 436 90, 436 90, 448 90"/><circle class="pin" cx="448" cy="90" r="4"/>
-                <rect class="node" x="448" y="30" width="166" height="86" rx="10"/><rect class="hd" x="448" y="30" width="166" height="26" rx="10"/>
+                <path class="wire" data-bp="2" d="M396 90 C 436 90, 436 90, 448 90"/><circle class="pin" cx="448" cy="90" r="4"/>
+                <rect class="node" data-bp="2" x="448" y="30" width="166" height="86" rx="10"/><rect class="hd" data-bp="2" x="448" y="30" width="166" height="26" rx="10"/>
                 <text x="460" y="48">Point Light</text><text class="sub" x="460" y="82">la luz del cuarto</text>
+              </svg>
+              <svg class="scene" viewBox="0 0 620 118" role="img" aria-label="Simulación en vivo: el jugador entra al área y la luz se prende">
+                <text class="tag" x="4" y="12">Simulación en vivo</text>
+                <path class="cone" data-cone d="M322 44 L262 104 L382 104 Z"/>
+                <line class="lamp" x1="322" y1="18" x2="322" y2="32"/>
+                <circle class="bulb" data-bulb cx="322" cy="40" r="9"/>
+                <rect class="zone" data-zone x="252" y="58" width="140" height="46" rx="6"/>
+                <text x="258" y="72">área</text>
+                <line class="floor" x1="4" y1="104" x2="616" y2="104"/>
+                <circle class="player" data-player cx="40" cy="94" r="9"/>
+                <circle class="player" cx="540" cy="8" r="5"/><text x="550" y="12">jugador</text>
               </svg>
             </div>
             <div class="speaker">
               <span class="avatar" aria-hidden="true">PE</span>
               <p><b>Profe Echo</b><span data-caption></span></p>
               <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="speaker__prog" aria-hidden="true"><i data-prog></i></span>
             </div>
           </div>
           <aside class="pane chat" aria-label="Chat de la clase">
+            <div class="tip">
+              <h1>EchoMentor <b>AI</b>, tu salón de clases con IA</h1>
+              <p>Escribe qué quieres aprender y arma el curso completo: temario, clases con voz, pizarrón y actividades. Todo adaptado a quien eres.</p>
+              <div class="tip__actions">
+                <a class="btn btn--solid" href="#entrar">Entrar</a>
+                <a class="btn btn--line" href="#temario">Ver cómo funciona</a>
+              </div>
+              <p class="tip__s">Beta para miembros del Club UETC · by UETC · Arden A.C.</p>
+            </div>
             <p class="label">Clase en vivo · 3 en el salón</p>
             <ul data-chat="clase">
               <li class="msg"><span class="avatar avatar--b" aria-hidden="true">LÍ</span><p><span class="who">Lía · compañera IA</span>¿El evento se dispara cada vez que alguien entra?</p></li>
               <li class="msg"><span class="avatar" aria-hidden="true">PE</span><p><span class="who">Profe Echo</span>Cada vez. Por eso sirve para puertas, trampas y luces.</p></li>
+              <li class="msg" hidden><span class="avatar" aria-hidden="true">PE</span><p><span class="who">Profe Echo</span>Mira la simulación de abajo: cuando el punto entra al área, la luz se prende.</p></li>
               <li class="msg" hidden><span class="avatar avatar--c" aria-hidden="true">TO</span><p><span class="who">Tomás · compañero IA</span>Yo lo usaría para abrir una puerta secreta.</p></li>
               <li class="msg msg--me" hidden><span class="avatar avatar--me" aria-hidden="true">TÚ</span><p><span class="who">Tú<span class="voice">voz transcrita</span></span>¿Y si quiero que la luz parpadee?</p></li>
+              <li class="msg" hidden><span class="avatar" aria-hidden="true">PE</span><p><span class="who">Profe Echo</span>Con un Timeline. Lo vemos en el pizarrón en un momento.</p></li>
             </ul>
             <div class="composer"><span>Pregunta lo que quieras, con texto o voz</span><span class="mic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></span></div>
           </aside>
-        </div>
-        <div class="tip" data-sc-cue="0 0.86 0">
-          <h1>EchoMentor <b>AI</b>, tu salón de clases con IA</h1>
-          <p>Escribe qué quieres aprender y arma el curso completo: temario, clases con voz, pizarrón y actividades. Todo adaptado a quien eres.</p>
-          <div class="tip__actions">
-            <a class="btn btn--solid" href="#entrar">Entrar</a>
-            <a class="btn btn--line" href="#temario">Ver cómo funciona</a>
-          </div>
-          <p class="tip__s">Beta para miembros del Club UETC · by UETC · Arden A.C.</p>
         </div>
       </div>
     </div>
@@ -567,13 +645,14 @@
             <div class="field" aria-live="off"><span data-typed></span><span class="caret" aria-hidden="true"></span><span class="ph" data-ph>Un tema, una meta o un documento</span></div>
             <div class="compose__row">
               <span class="chip">o sube un PDF</span>
-              <span class="chip">Español (México)</span>
+              <span class="chip" data-course-lang data-no-i18n>Español (México)</span>
               <span class="demo-tag"><span class="dot"></span>Demo con datos de ejemplo</span>
             </div>
           </div>
           <div class="pane gen">
             <p class="label">Generando temario</p>
             <ol class="log" data-log>
+              <li data-wait>Esperando tu tema</li>
               <li hidden>Leyendo tu perfil del Aprendiz</li>
               <li hidden>Ordenando de lo simple a lo complejo</li>
               <li hidden>Eligiendo el tipo de escena para cada clase</li>
@@ -722,7 +801,7 @@
           <p class="label">Idiomas · 12 disponibles</p>
           <p class="act__q">Los botones de cada actividad salen en el idioma de tu curso.</p>
           <label class="langsel"><span>Idioma</span>
-            <select data-lang>
+            <select data-lang data-no-i18n>
               <option value="es-MX" selected>Español (México)</option>
               <option value="en-US">English</option>
               <option value="pt-BR">Português (Brasil)</option>
@@ -737,7 +816,7 @@
               <option value="ar-SA">العربية</option>
             </select>
           </label>
-          <div class="mock" data-mock>
+          <div class="mock" data-mock data-no-i18n>
             <p class="mock__q" data-mock-q></p>
             <div class="mock__bar"><span class="btn btn--line" data-l="prev"></span><span class="btn btn--solid" data-l="check"></span><span class="btn btn--line" data-l="next"></span></div>
           </div>
@@ -820,10 +899,11 @@
 <footer class="statusbar" aria-label="Estado">
   <span class="statusbar__demo"><span class="dot"></span><span data-demo>Demostración con datos de ejemplo</span></span>
   <span class="statusbar__now" data-now>Clase 3 de 6 · Profe Echo está explicando</span>
-  <span class="statusbar__lang">es-MX</span>
+  <span class="statusbar__lang" data-langtag data-no-i18n>es-MX</span>
 </footer>
 
 <script src="scrollcraft.js"></script>
+<script src="i18n.js"></script>
 <script>ScrollCraft.mount(document.body);</script>
 <script>
 (function () {
@@ -833,35 +913,10 @@
   var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ------------------------------------------------------------ sample data
-     Everything the surface shows is computed from these arrays. It is a demo:
-     the real platform writes all of this with AI for each learner.          */
-  var CAPTION = 'Cuando el jugador entra al área, el evento se dispara. Lo conectamos a la luz y listo: tu primer interruptor.';
-  var TOPIC = 'Quiero hacer mi primer nivel en Unreal Engine 5';
-  var PROFILES = {
-    g: { name: 'Genérico', badge: 'Curso genérico', text: '',
-      plan: [['Qué es un motor de juego','Diapositivas'],['Moverte por el editor','Diapositivas'],['Blueprints: tu primer interruptor','Simulación'],['Luces y ambiente','Pizarrón'],['Quiz de repaso','Quiz'],['Proyecto: un nivel jugable','Proyecto']],
-      ex: 'Un Blueprint es un sistema visual de programación: conectas nodos y cada uno hace una acción.',
-      level: 2, levelName: 'Intermedio', pace: '6 clases de 30 min' },
-    a: { name: 'Diseñadora sin código', badge: 'Reescrito para ti',
-      text: 'Soy diseñadora gráfica y nunca he programado. Aprendo mejor con ejemplos visuales y poco a poco.',
-      plan: [['El editor como lienzo: forma, luz y color','Diapositivas'],['Tu escena como un moodboard en 3D','Pizarrón'],['Blueprints sin miedo: cajas y flechas','Simulación'],['Materiales: pinta tu mundo','Diapositivas'],['Quiz visual con imágenes','Quiz'],['Proyecto: un rincón jugable con tu estilo','Proyecto']],
-      ex: 'Un Blueprint es como un diagrama de flujo en tu programa de diseño: cada caja hace una cosa y las flechas dicen en qué orden.',
-      level: 1, levelName: 'Inicial', pace: '10 clases de 20 min, un concepto a la vez' },
-    b: { name: 'Ingeniero en C++', badge: 'Reescrito para ti',
-      text: 'Estudio ingeniería y programo en C++. Quiero ir directo al grano y ver cómo se conecta con código.',
-      plan: [['Arquitectura de UE5 en 10 minutos','Diapositivas'],['Actores, componentes y ciclo de vida','Pizarrón'],['Blueprints vs C++: cuándo usar cada uno','Simulación'],['Exponer funciones de C++ a Blueprints','Código'],['Quiz técnico','Quiz'],['Proyecto: sistema de interacción reutilizable','Proyecto']],
-      ex: 'BeginOverlap es el delegado OnComponentBeginOverlap que enlazarías en C++. El Blueprint solo dibuja esa llamada como grafo.',
-      level: 3, levelName: 'Avanzado', pace: '4 clases de 45 min, sin rodeos' },
-    c: { name: '30 min al día', badge: 'Reescrito para ti',
-      text: 'Hago juegos de mesa con mis hijos los fines de semana. Tengo 30 minutos al día para aprender.',
-      plan: [['De tablero a pantalla: reglas que ya conoces','Diapositivas'],['Tu primer escenario en 30 minutos','Proyecto'],['Blueprints: un dado que rueda','Simulación'],['Turnos y puntos','Pizarrón'],['Mini quiz de 5 preguntas','Quiz'],['Proyecto: un juego de mesa digital para jugar en familia','Proyecto']],
-      ex: 'Un Blueprint es como el reglamento de tu juego de mesa: cuando alguien cae en una casilla, pasa algo.',
-      level: 2, levelName: 'Intermedio', pace: '12 sesiones cortas de 30 min' }
-  };
-  var CUES = { a: ['diseñ','visual','nunca','principiante','dibuj','arte','ilustr','cero','no sé programar'],
-               b: ['c++','program','ingenier','código','codigo','desarroll','python','javascript','c#','senior'],
-               c: ['minutos','tiempo','hij','familia','fines de semana','trabajo','al día','poco tiempo'] };
+  /* Sample data lives in i18n.js, one set per language. Everything the surface
+     shows is computed from it. It is a demo: the real platform writes all of
+     this with AI for each learner. */
+  var I = window.EMI18N, LANG = I.pick(), D = I.DATA[LANG], CUES = I.CUES;
   var LANGS = {
     'es-MX': ['Pregunta 1 de 3', 'Anterior', 'Comprobar', 'Siguiente'],
     'en-US': ['Question 1 of 3', 'Previous', 'Check', 'Next'],
@@ -876,47 +931,57 @@
     'vi-VN': ['Câu 1 / 3', 'Trước', 'Kiểm tra', 'Tiếp theo'],
     'ar-SA': ['السؤال 1 من 3', 'السابق', 'تحقّق', 'التالي']
   };
-  var STATUS = {
-    clase: 'Clase 3 de 6 · Profe Echo está explicando',
-    temario: 'Nuevo curso · generando temario',
-    perfil: 'Perfil del Aprendiz · el curso se adapta a lo que escribes',
-    pizarron: 'Pizarrón en vivo · Profe Echo, Lía y Tomás',
-    actividades: 'Actividades interactivas · quiz, simulación, idiomas',
-    ayuda: 'Ayuda · qué hace EchoMentor AI',
-    entrar: 'Acceso para miembros del Club UETC'
-  };
 
-  /* -------------------------------------------------------- act 1 · clase */
-  var capEl = $('[data-caption]');
-  var capWords = CAPTION.split(' ');
-  var chat1 = $$('[data-chat="clase"] .msg');
-  var st1 = $('[data-state="clase"]');
+  /* ------------------------------------------ act 1 · clase (runs on its own) */
+  var capEl = $('[data-caption]'), chat1 = $$('[data-chat="clase"] .msg'), st1 = $('[data-state="clase"]');
+  var prog = $('[data-prog]'), player = $('[data-player]');
+  var bulb = $('[data-bulb]'), cone = $('[data-cone]'), zone = $('[data-zone]');
+  var bp = [0, 1, 2].map(function (i) { return $$('.bp [data-bp="' + i + '"]'); });
+  var t0 = performance.now();
+  var Z0 = 252, Z1 = 392;
+  function heroTick(now) {
+    var t = (now - t0) / 1000;
+    var words = D.caption.split(' ');
+    var n = reduce ? words.length : Math.min(words.length, 1 + Math.floor((t % 11) / 7 * words.length));
+    var cap = words.slice(0, n).join(' ');
+    if (capEl.textContent !== cap) capEl.textContent = cap;
+    var shown = reduce ? chat1.length : Math.min(chat1.length, 2 + Math.floor(t / 2.4));
+    chat1.forEach(function (m, i) { var h = i >= shown; if (m.hidden !== h) m.hidden = h; });
+    var s = reduce ? 0.5 : (t % 7) / 7;
+    var x = 30 + s * 560;
+    player.setAttribute('cx', x.toFixed(1));
+    var f = x < Z0 || x > Z1 ? -1 : (x - Z0) / (Z1 - Z0);
+    var inside = f >= 0;
+    zone.classList.toggle('on', inside);
+    bp[0].forEach(function (e) { e.classList.toggle('on', inside); });
+    bp[1].forEach(function (e) { e.classList.toggle('on', f > 0.1); });
+    bp[2].forEach(function (e) { e.classList.toggle('on', f > 0.2); });
+    bulb.classList.toggle('lit', f > 0.2); cone.classList.toggle('lit', f > 0.2);
+  }
   function renderClase(p) {
-    var n = Math.max(7, Math.round(capWords.length * clamp(0.3 + p * 1.1)));
-    capEl.textContent = capWords.slice(0, n).join(' ');
-    var shown = 2 + (p > 0.35 ? 1 : 0) + (p > 0.62 ? 1 : 0);
-    chat1.forEach(function (m, i) { m.hidden = i >= shown; });
-    st1.setAttribute('data-sc-verify-state', n + '|' + shown);
+    prog.style.transform = 'scaleX(' + (0.3 + p * 0.35).toFixed(3) + ')';
+    st1.setAttribute('data-sc-verify-state', Math.round(p * 40));
   }
 
   /* ------------------------------------------------------ act 2 · temario */
-  var typed = $('[data-typed]'), ph = $('[data-ph]'), logs = $$('[data-log] li'), planRows = $$('[data-plan] li'), done = $('[data-done]');
-  var st2 = $('[data-state="temario"]');
+  var typed = $('[data-typed]'), ph = $('[data-ph]'), wait = $('[data-wait]'), logs = $$('[data-log] li:not([data-wait])'), planRows = $$('[data-plan] li'), done = $('[data-done]');
+  var st2 = $('[data-state="temario"]'), editBtn = $('[data-edit]');
   function renderTemario(p) {
-    var c = Math.round(TOPIC.length * clamp(p / 0.26));
-    typed.textContent = TOPIC.slice(0, c);
+    var c = Math.round(D.topic.length * clamp(p / 0.26));
+    typed.textContent = D.topic.slice(0, c);
     ph.hidden = c > 0;
     var steps = (p > 0.3) + (p > 0.35) + (p > 0.4);
+    wait.hidden = steps > 0;
     logs.forEach(function (l, i) { l.hidden = i >= steps; l.classList.toggle('ok', i < steps - 1 || p > 0.46); });
     var rows = 0;
     planRows.forEach(function (r, i) { var on = p > 0.44 + i * 0.065; r.classList.toggle('off', !on); rows += on; });
     var fin = p > 0.84; done.classList.toggle('off', !fin);
     st2.setAttribute('data-sc-verify-state', c + '|' + steps + '|' + rows + '|' + (fin ? 1 : 0));
   }
-  $('[data-edit]').addEventListener('click', function () {
+  editBtn.addEventListener('click', function () {
     var on = planRows[0].getAttribute('contenteditable') !== 'true';
     planRows.forEach(function (r) { r.setAttribute('contenteditable', on ? 'true' : 'false'); });
-    this.textContent = on ? 'Listo' : 'Editar temario';
+    this.textContent = on ? D.ui.done : D.ui.edit;
     if (on) planRows[0].querySelector('.t').focus();
   });
 
@@ -925,7 +990,7 @@
   var cRows = $$('[data-cplan] li'), exEl = $('[data-ex]'), meter = $$('[data-meter] i'), levelEl = $('[data-level]'), paceEl = $('[data-pace]');
   var presets = $$('[data-preset]');
   var st3 = $('[data-state="perfil"]');
-  var applied = null, manual = false;
+  var applied = null, manual = false, manualKey = null, typedOwn = false;
   function swapText(el, txt, delay) {
     if (el.textContent === txt) return false;
     el.textContent = txt;
@@ -933,8 +998,8 @@
     return true;
   }
   function apply(key, fresh) {
-    if (applied === key) return;
-    var P = PROFILES[key];
+    if (applied === key && !fresh) return;
+    var P = D.profiles[key];
     cRows.forEach(function (r, i) {
       var ch = swapText(r.querySelector('.t'), P.plan[i][0], i * 35);
       swapText(r.querySelector('.kind'), P.plan[i][1], i * 35);
@@ -954,7 +1019,7 @@
     if (manual) return;
     var s = -1; for (var i = 0; i < 3; i++) if (p >= STARTS[i]) s = i;
     if (s < 0) { setBio(''); apply('g'); st3.setAttribute('data-sc-verify-state', 'g'); return; }
-    var key = ORDER[s], t = PROFILES[key].text, f = clamp((p - STARTS[s]) / 0.1);
+    var key = ORDER[s], t = D.profiles[key].text, f = clamp((p - STARTS[s]) / 0.1);
     setBio(t.slice(0, Math.round(t.length * f)));
     apply(f >= 1 ? key : (s === 0 ? 'g' : ORDER[s - 1]));
     st3.setAttribute('data-sc-verify-state', key + Math.round(f * 20) + applied);
@@ -968,23 +1033,24 @@
     return best;
   }
   function goManual() { manual = true; resume.hidden = false; }
-  bio.addEventListener('input', function () {
-    goManual(); count.textContent = bio.value.length + ' / 4000';
+  function fromOwnText() {
+    count.textContent = bio.value.length + ' / 4000';
     var k = classify(bio.value);
     if (!bio.value.trim()) { applied = null; apply('g'); return; }
-    if (k) { applied = null; apply(k, 'Adaptado a tu texto'); }
-    else { badge.textContent = 'Sigue escribiendo: nivel, meta, tiempo'; badge.classList.remove('on'); }
-  });
+    if (k) { applied = null; apply(k, D.ui.adapted); }
+    else { badge.textContent = D.ui.typing; badge.classList.remove('on'); }
+  }
+  bio.addEventListener('input', function () { goManual(); typedOwn = true; manualKey = null; fromOwnText(); });
   presets.forEach(function (b) {
-    b.addEventListener('click', function () { goManual(); var k = b.dataset.preset; setBio(PROFILES[k].text); applied = null; apply(k); });
+    b.addEventListener('click', function () { goManual(); typedOwn = false; var k = manualKey = b.dataset.preset; setBio(D.profiles[k].text); applied = null; apply(k); });
   });
-  resume.addEventListener('click', function () { manual = false; resume.hidden = true; applied = null; last.perfil = -1; });
+  resume.addEventListener('click', function () { manual = false; typedOwn = false; manualKey = null; resume.hidden = true; applied = null; last.perfil = -1; });
 
   /* ---------------------------------------------------- act 4 · pizarrón */
   var draws = $$('#pizarron [data-draw]').map(function (el) { var v = el.getAttribute('data-draw').split(' ').map(Number); return { el: el, a: v[0], b: v[1] }; });
   var shows = $$('#pizarron [data-show]').map(function (el) { return { el: el, at: +el.getAttribute('data-show') }; });
   var chat2 = $$('[data-chat="pizarron"] .msg').map(function (el) { return { el: el, at: +el.getAttribute('data-at') }; });
-  var mic = $('[data-mic]'), micLabel = $('[data-mic-label]');
+  var mic = $('[data-mic]'), micLabel = $('[data-mic-label]'), wbBulb = $('#pizarron .bulb');
   var st4 = $('[data-state="pizarron"]');
   function renderBoard(p) {
     var sig = '';
@@ -996,23 +1062,26 @@
     });
     shows.forEach(function (s) { s.el.classList.toggle('on', p >= s.at); });
     chat2.forEach(function (c) { c.el.hidden = p < c.at; });
-    $('#pizarron .bulb').classList.toggle('lit', p > 0.5 && !(p > 0.62 && p < 0.7));
+    wbBulb.classList.toggle('lit', p > 0.5 && !(p > 0.62 && p < 0.7));
     var listening = p > 0.66 && p < 0.74;
     mic.classList.toggle('on', listening);
-    micLabel.textContent = listening ? 'Escuchando…' : 'Mantén presionado para hablar';
+    micLabel.textContent = listening ? D.ui.listening : D.ui.hold;
     st4.setAttribute('data-sc-verify-state', sig);
   }
 
   /* ------------------------------------------------- act 5 · actividades */
-  var fb = $('[data-feedback]');
+  var fb = $('[data-feedback]'), lastAnswer = null;
+  function quizFeedback() {
+    if (lastAnswer === null) return;
+    fb.innerHTML = lastAnswer === '1' ? D.quiz.right : D.quiz.wrong + D.quiz.why[lastAnswer] + D.quiz.answer;
+  }
   $$('[data-quiz] .opt').forEach(function (b) {
     b.addEventListener('click', function () {
       $$('[data-quiz] .opt').forEach(function (o) { o.classList.remove('right', 'wrong'); });
       var ok = b.dataset.opt === '1';
       b.classList.add(ok ? 'right' : 'wrong');
       if (!ok) $('[data-quiz] [data-opt="1"]').classList.add('right');
-      fb.innerHTML = ok ? '<b>Correcto.</b> BeginOverlap se dispara en el momento en que el jugador entra al área.'
-        : '<b>Casi.</b> ' + ({ 0: 'Tick corre cada frame, no cuando alguien entra.', 2: 'BeginPlay corre una vez, cuando arranca el nivel.', 3: 'Toggle Visibility es la acción, no el evento que la dispara.' })[b.dataset.opt] + ' La respuesta es BeginOverlap.';
+      lastAnswer = b.dataset.opt; quizFeedback();
     });
   });
 
@@ -1028,69 +1097,99 @@
     arc.setAttribute('d', pts.join(' '));
     dot.setAttribute('cx', X0 + 150); dot.setAttribute('cy', (Y0 - peak).toFixed(1));
     var ok = h >= PLAT;
-    simOut.innerHTML = 'Altura máxima: <b>' + Math.round(h) + ' cm</b>. ' + (ok ? 'Alcanzas la plataforma.' : 'Te faltan ' + Math.round(PLAT - h) + ' cm.') + ' Gravedad por defecto de Unreal: 980 cm/s².';
+    simOut.innerHTML = D.sim.max + '<b>' + Math.round(h) + ' cm</b>. ' + (ok ? D.sim.reach : D.sim.short(Math.round(PLAT - h))) + D.sim.note;
   }
-  vIn.addEventListener('input', sim); gIn.addEventListener('input', sim); sim();
+  vIn.addEventListener('input', sim); gIn.addEventListener('input', sim);
 
-  var langSel = $('[data-lang]'), mock = $('[data-mock]');
+  var langSel = $('[data-lang]'), mock = $('[data-mock]'), langTouched = false;
   function lang() {
     var L = LANGS[langSel.value];
     $('[data-mock-q]').textContent = L[0];
     $('[data-l="prev"]', mock).textContent = L[1]; $('[data-l="check"]', mock).textContent = L[2]; $('[data-l="next"]', mock).textContent = L[3];
     mock.setAttribute('dir', langSel.value === 'ar-SA' ? 'rtl' : 'ltr'); mock.setAttribute('lang', langSel.value);
   }
-  langSel.addEventListener('change', lang); lang();
+  langSel.addEventListener('change', function () { langTouched = true; lang(); });
 
   /* ----------------------------------------------------------- act 6 · ayuda */
   var filter = $('[data-filter]'), rows = $$('[data-help] .row'), empty = $('[data-empty]');
-  filter.addEventListener('input', function () {
-    var q = filter.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''), n = 0;
-    rows.forEach(function (r) { var hit = !q || r.textContent.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').indexOf(q) > -1; r.hidden = !hit; n += hit; });
+  var fold = function (t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+  function runFilter() {
+    var q = fold(filter.value.trim()), n = 0;
+    rows.forEach(function (r) { var hit = !q || fold(r.textContent).indexOf(q) > -1; r.hidden = !hit; n += hit; });
     empty.hidden = n > 0;
-  });
+  }
+  filter.addEventListener('input', runFilter);
 
   /* ---------------------------------------------------------- act 7 · entrar */
-  var statusEl = $('[data-status]');
-  var MSG = { invalido: 'Ese código no funcionó. Revísalo en el Club UETC e intenta de nuevo.',
-              espera: 'Demasiados intentos seguidos. Espera un minuto y vuelve a intentar.',
-              origen: 'No pudimos validar desde esta página. Abre la plataforma directo e ingresa ahí.' };
+  var statusEl = $('[data-status]'), loginErr = null;
   var qs = new URLSearchParams(location.search), why = qs.get('acceso');
-  if (why && MSG[why]) {
-    statusEl.textContent = MSG[why]; statusEl.classList.add('err');
-    history.replaceState(null, '', location.pathname + '#entrar');
+  if (why && D.msg[why]) {
+    loginErr = why;
+    var keep = qs.get('lang') ? '?lang=' + qs.get('lang') : '';
+    history.replaceState(null, '', location.pathname + keep + '#entrar');
     setTimeout(function () { document.getElementById('entrar').scrollIntoView(); $('#code').focus({ preventScroll: true }); }, 350);
   }
+  function loginStatus() { if (loginErr) { statusEl.textContent = D.msg[loginErr]; statusEl.classList.add('err'); } }
   $('[data-login]').addEventListener('submit', function (e) {
     var v = $('#code').value.trim();
-    if (!v) { e.preventDefault(); statusEl.textContent = 'Escribe tu código de miembro.'; statusEl.classList.add('err'); return; }
-    statusEl.classList.remove('err'); statusEl.textContent = 'Entrando…';
+    if (!v) { e.preventDefault(); statusEl.textContent = D.ui.emptyCode; statusEl.classList.add('err'); return; }
+    statusEl.classList.remove('err'); statusEl.textContent = D.ui.entering;
   });
+
+  /* ------------------------------------------------------------ language */
+  var langBtns = $$('[data-setlang]'), tagEl = $('[data-langtag]'), courseLang = $('[data-course-lang]');
+  var metaDesc = $('meta[name="description"]');
+  function setLang(l, fromUser) {
+    LANG = l; D = I.DATA[l];
+    I.apply(document.body, l);
+    document.documentElement.lang = D.htmlLang;
+    document.title = D.title; if (metaDesc) metaDesc.setAttribute('content', D.desc);
+    tagEl.textContent = D.langTag; courseLang.textContent = D.ui.courseLang;
+    langBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.setlang === l ? 'true' : 'false'); });
+    if (fromUser) {
+      try { localStorage.setItem('em-lang', l); } catch (e) {}
+      var u = new URL(location.href); u.searchParams.set('lang', l); history.replaceState(null, '', u.pathname + u.search + u.hash);
+    }
+    editBtn.textContent = planRows[0].getAttribute('contenteditable') === 'true' ? D.ui.done : D.ui.edit;
+    if (!langTouched) langSel.value = D.ui.panelLang;
+    lang(); sim(); quizFeedback(); loginStatus();
+    if (manual && manualKey) { setBio(D.profiles[manualKey].text); applied = null; apply(manualKey); }
+    else if (manual && typedOwn) { fromOwnText(); }
+    else { applied = null; }
+    last = {}; current = '';
+  }
+  langBtns.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.setlang !== LANG) setLang(b.dataset.setlang, true); }); });
 
   /* ------------------------------------------------------------ the loop */
   var renders = { clase: renderClase, temario: renderTemario, perfil: renderPerfil, pizarron: renderBoard };
   var last = {};
   var sections = $$('main > section');
   var tabs = $$('[data-tab]'), nowEl = $('[data-now]'), demoEl = $('[data-demo]'), current = '';
-  function prog(el) { var v = parseFloat(el.style.getPropertyValue('--sc-p')); return isNaN(v) ? 0 : v; }
-  function frame() {
+  var heroEl = document.getElementById('clase');
+  function progOf(el) { var v = parseFloat(el.style.getPropertyValue('--sc-p')); return isNaN(v) ? 0 : v; }
+  function frame(now) {
     var vh = innerHeight, active = sections[0].id;
     sections.forEach(function (s) {
       var r = s.getBoundingClientRect();
       if (r.top <= vh * 0.5) active = s.id;
       var fn = renders[s.id];
       if (fn && r.bottom > -vh * 0.2 && r.top < vh * 1.2) {
-        var p = prog(s);
+        var p = progOf(s);
         if (last[s.id] === undefined || Math.abs(last[s.id] - p) > 0.0004) { last[s.id] = p; fn(p); }
       }
     });
+    var hr = heroEl.getBoundingClientRect();
+    if (hr.bottom > 0 && hr.top < vh) heroTick(now);
     if (active !== current) {
       current = active;
       tabs.forEach(function (t) { t.setAttribute('aria-current', t.dataset.tab === active ? 'true' : 'false'); });
-      nowEl.textContent = STATUS[active] || '';
-      demoEl.textContent = active === 'entrar' ? 'Acceso real a la plataforma' : 'Demostración con datos de ejemplo';
+      nowEl.textContent = D.status[active] || '';
+      demoEl.textContent = active === 'entrar' ? D.ui.real : D.ui.demo;
     }
     requestAnimationFrame(frame);
   }
+  setLang(LANG, false);
+  heroTick(performance.now());
   renderClase(0); renderTemario(0); renderPerfil(0); renderBoard(0);
   requestAnimationFrame(frame);
 })();
