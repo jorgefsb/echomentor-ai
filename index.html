@@ -940,7 +940,7 @@
 <button type="button" class="coach" data-coach data-no-i18n aria-live="polite"><span class="coach__icon" aria-hidden="true"><i></i></span><span data-coach-text></span><kbd aria-hidden="true">↓</kbd></button>
 
 <script src="scrollcraft.js"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=1.2"></script>
 <script>ScrollCraft.mount(document.body);</script>
 <script>
 (function () {
@@ -1194,7 +1194,7 @@
     if (manual && manualKey) { setBio(D.profiles[manualKey].text); applied = null; apply(manualKey); }
     else if (manual && typedOwn) { fromOwnText(); }
     else { applied = null; }
-    last = {}; current = ''; if (coachOn) coachText.textContent = D.hint[coachFor] || '';
+    last = {}; current = ''; if (coachOn) coachText.textContent = (D.hint || {})[coachFor] || '';
   }
   langBtns.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.setlang !== LANG) setLang(b.dataset.setlang, true); }); });
 
@@ -1211,7 +1211,7 @@
   addEventListener('keydown', function () { lastMove = performance.now(); hideCoach(); });
   coach.addEventListener('click', function () { hideCoach(); scrollBy({ top: Math.round(innerHeight * 0.85), behavior: reduce ? 'auto' : 'smooth' }); });
   function coachTick(now, active) {
-    var text = D.hint[active];
+    var text = (D.hint || {})[active];
     var s = document.getElementById(active), p = progOf(s);
     var pinned = s.getAttribute('data-sc-act') !== 'flow';
     var wait = coachShown[active] ? 6500 : (active === 'clase' ? 1800 : 3500);
