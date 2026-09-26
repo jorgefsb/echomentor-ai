@@ -85,7 +85,7 @@
   .tabs a[aria-current="true"]::after { transform: scaleX(1); }
   .appbar__enter {
     margin-left: auto; display: inline-flex; align-items: center; gap: 0.5rem;
-    height: 32px; padding-inline: 0.9rem; border-radius: 8px; text-decoration: none;
+    height: 32px; padding-inline: 0.9rem; border-radius: 8px; text-decoration: none; white-space: nowrap; flex: none;
     font-size: 0.86rem; font-weight: 600; color: var(--sc-accent-ink); background: var(--sc-accent);
     transition: transform 160ms var(--sc-ease-out);
   }
@@ -117,31 +117,42 @@
   .steps i.now { background: var(--sc-accent); }
   .steps + .statusbar__lang { margin-left: 0.9rem; }
   .coach {
-    position: fixed; left: 50%; bottom: calc(var(--status-h) + 16px); z-index: 61;
-    display: inline-flex; align-items: center; gap: 0.7rem;
-    padding: 0.5rem 0.85rem 0.5rem 0.7rem; border-radius: 999px; cursor: pointer;
-    font: inherit; font-size: 0.82rem; color: var(--sc-ink);
-    background: color-mix(in oklab, var(--raise) 90%, transparent);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--sc-hairline-strong); box-shadow: var(--sc-e2);
-    opacity: 0; transform: translate(-50%, 8px); pointer-events: none;
-    transition: opacity 260ms var(--sc-ease-out), transform 260ms var(--sc-ease-out), border-color 180ms var(--sc-ease-out);
+    position: fixed; left: 50%; bottom: calc(var(--status-h) + 26px); z-index: 61;
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.62rem 0.95rem 0.62rem 0.8rem; border-radius: 999px; cursor: pointer;
+    font: inherit; font-size: 0.92rem; font-weight: 500; letter-spacing: 0.005em; color: var(--sc-ink);
+    background: color-mix(in oklab, var(--raise) 84%, var(--sc-accent) 10%);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid color-mix(in oklab, var(--sc-accent) 62%, transparent);
+    box-shadow: 0 12px 36px -12px color-mix(in oklab, var(--sc-accent) 60%, transparent), var(--sc-e2);
+    opacity: 0; transform: translate(-50%, 16px); pointer-events: none;
+    transition: opacity 320ms var(--sc-ease-out), transform 480ms cubic-bezier(0.2, 1.35, 0.4, 1), border-color 180ms var(--sc-ease-out);
   }
-  .coach.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-  .coach:hover { border-color: color-mix(in oklab, var(--sc-accent) 60%, transparent); }
-  .coach__icon { position: relative; flex: none; width: 15px; height: 23px; border: 1.5px solid var(--sc-ink-soft); border-radius: 9px; }
+  .coach::before {
+    content: ''; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none;
+    border: 1px solid var(--sc-accent); opacity: 0;
+  }
+  .coach.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; animation: coach-bob 2.6s ease-in-out 0.7s infinite; }
+  .coach.on::before { animation: coach-halo 2.6s var(--sc-ease-out) 0.7s infinite; }
+  .coach.on:hover { animation-play-state: paused; border-color: var(--sc-accent); }
+  .coach.on:hover::before { animation-play-state: paused; }
+  @keyframes coach-bob {
+    0%, 44%, 100% { transform: translate(-50%, 0); }
+    14% { transform: translate(-50%, -8px); }
+    28% { transform: translate(-50%, 0); }
+    36% { transform: translate(-50%, -3px); }
+  }
+  @keyframes coach-halo {
+    0% { opacity: 0.6; transform: scale(1, 1); }
+    55%, 100% { opacity: 0; transform: scale(1.07, 1.55); }
+  }
+  .coach__icon { position: relative; flex: none; width: 16px; height: 25px; border: 1.5px solid var(--sc-ink); border-radius: 9px; opacity: 0.85; }
   .coach__icon i { position: absolute; left: 50%; top: 4px; width: 2px; height: 5px; margin-left: -1px; border-radius: 2px; background: var(--sc-accent); animation: wheel 1.8s var(--sc-ease-out) infinite; }
-  @keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 65% { transform: translateY(8px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
-  .coach kbd { font-family: var(--sc-font-mono); font-size: 0.66rem; line-height: 1; padding: 0.2rem 0.35rem; border-radius: 5px; border: 1px solid var(--sc-hairline-strong); color: var(--sc-ink-soft); }
+  @keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 65% { transform: translateY(9px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+  .coach kbd { font-family: var(--sc-font-mono); font-size: 0.7rem; line-height: 1; padding: 0.22rem 0.38rem; border-radius: 5px; border: 1px solid color-mix(in oklab, var(--sc-accent) 50%, transparent); color: var(--sc-accent); }
   @media (hover: none), (pointer: coarse) { .coach kbd { display: none; } }
-  @media (min-width: 761px) {
-    .coach { bottom: 4px; gap: 0.5rem; padding: 0.12rem 0.65rem 0.12rem 0.45rem; font-size: 0.74rem; box-shadow: none; border-color: color-mix(in oklab, var(--sc-accent) 55%, transparent); background: color-mix(in oklab, var(--raise) 80%, var(--sc-accent) 8%); }
-    .coach__icon { width: 11px; height: 17px; border-radius: 7px; border-width: 1.2px; }
-    .coach__icon i { top: 3px; height: 4px; }
-    .coach kbd { padding: 0.1rem 0.3rem; font-size: 0.62rem; }
-    body.coach-on .statusbar__now { opacity: 0; }
-  }
-  .statusbar__now { transition: opacity 200ms var(--sc-ease-out); }
+  body.coach-on .steps i.now { animation: step-pulse 1.3s ease-in-out infinite; }
+  @keyframes step-pulse { 50% { opacity: 0.35; } }
 
   /* --------------------------------------------------------------- stages */
   .stage { background: transparent; }
@@ -511,7 +522,7 @@
     .crumb .demo-tag { display: none; }
     .scene { max-height: 22%; }
     .langs button { min-width: 28px; padding-inline: 0.3rem; }
-    .coach { font-size: 0.78rem; max-width: calc(100vw - 24px); white-space: nowrap; }
+    .coach { bottom: calc(var(--status-h) + 18px); font-size: 0.84rem; padding: 0.55rem 0.85rem 0.55rem 0.7rem; max-width: calc(100vw - 24px); white-space: nowrap; }
     .steps i { width: 10px; }
     .brand__name { font-size: 0.95rem; }
     .win--compose, .win--profile, .win--board, .win--enter, .win--help { grid-template-columns: 1fr; }
@@ -551,7 +562,7 @@
     #entrar .frame { bottom: calc(var(--status-h) + 52px); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .bars i, .caret, .coach__icon i { animation: none; }
+    .bars i, .caret, .coach__icon i, .coach.on, .coach.on::before, body.coach-on .steps i.now { animation: none; }
     .swap { animation-duration: 1ms; }
     .plan li, .msg { transition: opacity 200ms linear; transform: none !important; }
   }
@@ -1214,7 +1225,7 @@
     var text = (D.hint || {})[active];
     var s = document.getElementById(active), p = progOf(s);
     var pinned = s.getAttribute('data-sc-act') !== 'flow';
-    var wait = coachShown[active] ? 6500 : (active === 'clase' ? 1800 : 3500);
+    var wait = coachShown[active] ? 6000 : (active === 'clase' ? 1200 : 3000);
     var want = !!text && (!pinned || p < 0.92) && (coachShown[active] || 0) < 2 && now - lastMove > wait;
     if (want && !coachOn) {
       coachText.textContent = text; coachFor = active;

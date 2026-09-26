@@ -81,3 +81,10 @@ Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; work
 - Scroll hint in the product's own idiom, not a bouncing arrow: an in-app coach mark in the status bar (desktop) or a floating pill (phone) with a wheel icon and a line specific to each act ("Sigue bajando: el temario se arma solo"). Appears after a few idle seconds, hides the moment you scroll, at most twice per act, click to advance. Respects reduced motion.
 - Section stepper (7 segments) in the status bar so you always know how much is left.
 - Platform v1.6.0 added Romanian, so the landing now says 13 languages and the language panel includes Română.
+
+## v1.3 (2026-09-26): pista de scroll más visible
+- La píldora "Desliza para ver cómo funciona" ahora flota más arriba (ya no pegada a la barra de estado), más grande y con borde y brillo verde.
+- Se mueve tantito: un doble rebote suave cada 2.6 s más un halo que se expande. Se pausa al pasar el mouse y se apaga con movimiento reducido.
+- Mientras está visible, el segmento actual del stepper late suave.
+- Aparece antes: 1.2 s en el hero y 3 s en los demás actos.
+- Fix: en inglés el botón "Sign In" del header ya no se parte en dos renglones en celular.
