@@ -43,7 +43,9 @@
     --raise: color-mix(in oklab, var(--sc-surface) 95%, var(--sc-ink) 5%);
     --well:  color-mix(in oklab, var(--sc-canvas) 70%, var(--sc-surface) 30%);
     --accent-wash: color-mix(in oklab, var(--sc-accent) 12%, transparent);
-    --bar-h: 52px;
+    --home-h: 44px;
+    --app-h: 52px;
+    --bar-h: calc(var(--home-h) + var(--app-h));
     --status-h: 30px;
   }
 
@@ -56,8 +58,24 @@
   }
 
   /* ------------------------------------------------------------ app chrome */
+  .homesite {
+    position: fixed; inset: 0 0 auto 0; height: var(--home-h); z-index: 60;
+    display: flex; align-items: center; box-sizing: border-box;
+    padding-inline: clamp(12px, 2.4vw, 28px);
+    background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--sc-hairline);
+    text-decoration: none; white-space: nowrap;
+    font-family: var(--sc-font-mono); font-size: 0.72rem; letter-spacing: 0.04em;
+    color: var(--sc-ink-soft);
+  }
+  .homesite:hover { color: var(--sc-ink); }
+  .homesite:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--sc-accent) 50%, transparent);
+    outline-offset: -2px;
+  }
   .appbar {
-    position: fixed; inset: 0 0 auto 0; height: var(--bar-h); z-index: 60;
+    position: fixed; inset: var(--home-h) 0 auto 0; height: var(--app-h); z-index: 60;
     display: flex; align-items: center; gap: 1.25rem;
     padding-inline: clamp(12px, 2.4vw, 28px);
     background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
@@ -488,7 +506,8 @@
   }
   .foot a { text-decoration: none; }
   .foot a:hover { color: var(--sc-ink); }
-  #entrar .frame { bottom: calc(var(--status-h) + 36px); }
+  .foot__home { display: inline-flex; align-items: center; min-height: 44px; }
+  #entrar .frame { bottom: calc(var(--status-h) + 52px); }
 
   /* --------------------------------------------------------------- mobile */
   @media (max-width: 1100px) {
@@ -496,7 +515,7 @@
     .win--class .outline { display: none; }
   }
   @media (max-width: 760px) {
-    :root { --bar-h: 50px; --status-h: 26px; }
+    :root { --app-h: 50px; --status-h: 26px; }
     .tabs, .brand__by { display: none; }
     .statusbar__now { display: none; }
     .frame { inset: calc(var(--bar-h) + 8px) 10px calc(var(--status-h) + 8px); }
@@ -559,7 +578,7 @@
     .join { padding-block: 16px; gap: 0.6rem; }
     .join ol { display: none; }
     .foot { font-size: 0.68rem; gap: 0.2rem 0.8rem; }
-    #entrar .frame { bottom: calc(var(--status-h) + 52px); }
+    #entrar .frame { bottom: calc(var(--status-h) + 64px); }
   }
   @media (prefers-reduced-motion: reduce) {
     .bars i, .caret, .coach__icon i, .coach.on, .coach.on::before, body.coach-on .steps i.now { animation: none; }
@@ -571,6 +590,7 @@
 <body>
 <div class="sc-grain" aria-hidden="true"></div>
 
+<a class="homesite" href="https://jorgesuarez.com.mx/" rel="noopener" data-no-i18n>← JorgeSuarez.com.mx</a>
 <header class="appbar">
   <a class="brand" href="#clase" aria-label="EchoMentor AI, inicio">
     <img src="assets/uetc-mark-64.png" alt="" width="22" height="24">
@@ -932,6 +952,7 @@
       </div>
       <footer class="foot" data-sc-cue="0.08">
         <span>EchoMentor AI · by UETC · Arden A.C.</span>
+        <a class="foot__home" href="https://jorgesuarez.com.mx/" rel="noopener" data-no-i18n>← JorgeSuarez.com.mx</a>
         <a href="https://www.uetc.mx" rel="noopener">uetc.mx</a>
         <a href="https://club.uetc.mx" rel="noopener">Club UETC</a>
         <a href="https://github.com/jorgefsb/echomentor-ai" rel="noopener">Código de esta página</a>
