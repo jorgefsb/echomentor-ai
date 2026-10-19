@@ -97,3 +97,4 @@ Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; work
 - La regla anterior "no purple" de la referencia de diseño queda superada por el brandkit: la noche de Arden es la marca.
 - Verificado: texto visible, scripts, i18n.js y motor idénticos al commit anterior; 0 errores de consola y 0 desbordes en 1440 y 390 px, en ES/EN/RO.
 - Rollback: rama `claude/respaldo-pre-brandkit-2026-10-19` (estado anterior exacto).
+- Logo animado: el símbolo de la barra usa la firma oficial "Eco" de UETC (`assets/uetc-symbol-eco.svg`, 2.3 s, una sola vez al cargar, se apaga con movimiento reducido). Pedido de Jorge: usar los logos animados del brandkit donde tenga sentido.
