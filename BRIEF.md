@@ -88,3 +88,13 @@ Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; work
 - Mientras está visible, el segmento actual del stepper late suave.
 - Aparece antes: 1.2 s en el hero y 3 s en los demás actos.
 - Fix: en inglés el botón "Sign In" del header ya no se parte en dos renglones en celular.
+
+## v1.4 (2026-10-19): alineada al brandkit de Arden v2.4
+- Pedido de Jorge: que se vea como producto de la familia Arden/UETC, sin cambiar contenido ni funciones.
+- Colores: noche #120C33 de fondo y paleta oscura de interfaz del brandkit; acento amarillo UETC #F6D023 (regla del brandkit: en piezas UETC el amarillo sustituye al verde). Cielo de noche con estrellas y resplandor violeta e índigo.
+- Tipografía: Montserrat (títulos, antetítulos) + Rubik (texto), autoalojadas. Fuera Archivo, Geist y Geist Mono (el brandkit permite dos familias).
+- Logo: el hexágono verde no estaba en el brandkit; ahora el símbolo oficial de puntos de UETC + "EchoMentor AI" en Montserrat 800. Ícono de app nuevo sobre noche.
+- La regla anterior "no purple" de la referencia de diseño queda superada por el brandkit: la noche de Arden es la marca.
+- Verificado: texto visible, scripts, i18n.js y motor idénticos al commit anterior; 0 errores de consola y 0 desbordes en 1440 y 390 px, en ES/EN/RO.
+- Rollback: rama `claude/respaldo-pre-brandkit-2026-10-19` (estado anterior exacto).
+- Logo animado: el símbolo de la barra usa la firma oficial "Eco" de UETC (`assets/uetc-symbol-eco.svg`, 2.3 s, una sola vez al cargar, se apaga con movimiento reducido). Pedido de Jorge: usar los logos animados del brandkit donde tenga sentido.

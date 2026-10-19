@@ -11,47 +11,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>EchoMentor AI · Plataforma de aprendizaje adaptativo con IA · by UETC</title>
 <meta name="description" content="Tu salón de clases con IA. Escribe qué quieres aprender y EchoMentor AI arma el curso: temario, clases con voz, pizarrón y actividades, adaptado a quien eres. Beta para miembros del Club UETC.">
-<meta name="theme-color" content="#0c0e0b">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" href="assets/uetc-mark-180.png">
+<meta name="theme-color" content="#120C33">
+<link rel="icon" type="image/svg+xml" href="assets/echomentor-icon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/echomentor-icon-64.png">
+<link rel="apple-touch-icon" href="assets/echomentor-icon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://echomentor.uetc.mx/">
 <meta property="og:title" content="EchoMentor AI · by UETC">
 <meta property="og:description" content="Plataforma de aprendizaje adaptativo con IA. Escribe quién eres y el curso entero se reescribe para ti.">
-<meta property="og:image" content="https://echomentor.uetc.mx/assets/og.jpg">
+<meta property="og:image" content="https://echomentor.uetc.mx/assets/og.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" hreflang="es" href="https://echomentor.uetc.mx/?lang=es">
 <link rel="alternate" hreflang="en" href="https://echomentor.uetc.mx/?lang=en">
 <link rel="alternate" hreflang="ro" href="https://echomentor.uetc.mx/?lang=ro">
 <link rel="alternate" hreflang="x-default" href="https://echomentor.uetc.mx/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=swap">
+<link rel="preload" href="assets/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="scrollcraft.css">
 <style>
   :root {
-    --sc-canvas:     #0c0e0b;
-    --sc-surface:    #141711;
-    --sc-ink:        #eceee6;
-    --sc-ink-soft:   #9ba394;
-    --sc-accent:     #92bf1f;
-    --sc-accent-ink: #0c0e0b;
-    --sc-font-display: "Archivo", system-ui, sans-serif;
-    --sc-font-text:    "Geist", system-ui, sans-serif;
-    --sc-font-mono:    "Geist Mono", ui-monospace, monospace;
+    /* Brandkit Arden v2.4 · pieza UETC: noche de fondo, amarillo UETC de acento */
+    --sc-canvas:     #120C33;   /* --night */
+    --sc-surface:    #1A1440;   /* --surface (oscuro) */
+    --sc-ink:        #F0EEF9;   /* --ink (oscuro) */
+    --sc-ink-soft:   #8F89B0;   /* --muted (oscuro), 5.2:1 sobre surface */
+    --sc-accent:     #F6D023;   /* --uetc-yellow, 12.4:1 sobre noche */
+    --sc-accent-ink: #120C33;   /* noche sobre amarillo */
+    --sc-font-display: Montserrat, "Avenir Next", system-ui, sans-serif;
+    --sc-font-text:    Rubik, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sc-font-mono:    Rubik, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --attn: #F2907A;            /* --attn (oscuro) */
+    --violet-glow: #4A1675;
+    --indigo-glow: #2E2278;
 
     --raise: color-mix(in oklab, var(--sc-surface) 95%, var(--sc-ink) 5%);
     --well:  color-mix(in oklab, var(--sc-canvas) 70%, var(--sc-surface) 30%);
-    --accent-wash: color-mix(in oklab, var(--sc-accent) 12%, transparent);
+    --accent-wash: color-mix(in oklab, var(--indigo-glow) 80%, transparent);
     --bar-h: 52px;
     --status-h: 30px;
   }
 
   body { background: var(--sc-canvas); }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(60vw 50vh at 0% 100%, color-mix(in oklab, var(--violet-glow) 55%, transparent), transparent 70%),
+      radial-gradient(55vw 45vh at 100% 0%, color-mix(in oklab, var(--indigo-glow) 60%, transparent), transparent 70%),
+      url("assets/starfield.svg") center / 900px 700px repeat;
+    opacity: 0.55;
+  }
+  .label, .kind, .badge, .n, .log, .count, kbd { font-variant-numeric: tabular-nums; }
   a { color: inherit; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .label {
-    font-family: var(--sc-font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+    font-family: var(--sc-font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--sc-ink-soft); margin: 0;
   }
 
@@ -66,7 +80,7 @@
   }
   .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex: none; }
   .brand img { width: 22px; height: auto; display: block; }
-  .brand__name { font-family: var(--sc-font-display); font-stretch: 112%; font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; }
+  .brand__name { font-family: var(--sc-font-display); font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; }
   .brand__name b { color: var(--sc-accent); font-weight: 700; }
   .brand__by { font-family: var(--sc-font-mono); font-size: 0.68rem; color: var(--sc-ink-soft); padding-left: 0.6rem; border-left: 1px solid var(--sc-hairline-strong); }
   .tabs { display: flex; gap: 0.15rem; margin-left: 0.5rem; height: 100%; }
@@ -206,14 +220,14 @@
   }
   .slide__kicker { font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-accent); margin: 0; }
   .slide__title {
-    font-family: var(--sc-font-display); font-stretch: 108%; font-weight: 650; margin: 0;
+    font-family: var(--sc-font-display); font-weight: 700; margin: 0;
     font-size: clamp(1.45rem, 1rem + 1.6vw, 2.35rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 22ch;
   }
   .slide__lede { margin: 0; color: var(--sc-ink-soft); max-width: 46ch; font-size: 0.98rem; }
   .bp { width: 100%; height: auto; margin-top: auto; max-height: 34%; }
   .bp .node, .bp .hd, .bp .wire { transition: stroke 200ms var(--sc-ease-out), fill 200ms var(--sc-ease-out); }
   .bp .node.on { stroke: var(--sc-accent); }
-  .bp .hd.on { fill: color-mix(in oklab, var(--sc-accent) 55%, var(--sc-surface)); }
+  .bp .hd.on { fill: var(--indigo-glow); }
   .bp .wire { stroke: color-mix(in oklab, var(--sc-accent) 35%, transparent); }
   .bp .wire.on { stroke: var(--sc-accent); }
   .scene { width: 100%; height: auto; max-height: 26%; border-top: 1px solid var(--sc-hairline); padding-top: 0.6rem; }
@@ -232,7 +246,7 @@
   .speaker__prog i { display: block; height: 100%; background: var(--sc-accent); transform-origin: 0 50%; transform: scaleX(0.3); }
   .bp .node { fill: var(--raise); stroke: var(--sc-hairline-strong); }
   .bp .node--ev { stroke: color-mix(in oklab, var(--sc-accent) 70%, transparent); }
-  .bp .hd { fill: color-mix(in oklab, var(--sc-accent) 22%, var(--sc-surface)); }
+  .bp .hd { fill: #262054; }
   .bp text { fill: var(--sc-ink); font-family: var(--sc-font-mono); font-size: 12px; }
   .bp .sub { fill: var(--sc-ink-soft); font-size: 11px; }
   .bp .wire { fill: none; stroke-width: 2; }
@@ -246,8 +260,8 @@
     font-family: var(--sc-font-mono); font-size: 0.72rem; font-weight: 500;
     background: var(--sc-accent); color: var(--sc-accent-ink);
   }
-  .avatar--b { background: #2b3226; color: var(--sc-ink); }
-  .avatar--c { background: #33302a; color: var(--sc-ink); }
+  .avatar--b { background: #262054; color: var(--sc-ink); }
+  .avatar--c { background: #2F2862; color: var(--sc-ink); }
   .avatar--me { background: transparent; color: var(--sc-ink); border: 1px solid var(--sc-hairline-strong); }
   .speaker p { margin: 0; font-size: 0.92rem; line-height: 1.45; }
   .speaker b { font-weight: 600; margin-right: 0.35rem; }
@@ -282,8 +296,8 @@
     box-shadow: var(--sc-e3);
   }
   .tip h1 {
-    margin: 0 0 0.5rem; font-family: var(--sc-font-display); font-stretch: 110%; font-weight: 700;
-    font-size: clamp(1.2rem, 0.95rem + 0.7vw, 1.5rem); letter-spacing: -0.015em; line-height: 1.12; text-wrap: balance;
+    margin: 0 0 0.5rem; font-family: var(--sc-font-display); font-weight: 700;
+    font-size: clamp(1.2rem, 0.95rem + 0.7vw, 1.5rem); letter-spacing: -0.02em; line-height: 1.12; text-wrap: balance;
   }
   .tip h1 b { color: var(--sc-accent); font-weight: 700; }
   .tip p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: var(--sc-ink); }
@@ -305,7 +319,7 @@
   /* ------------------------------------------------------------ 2 · TEMARIO */
   .win--compose { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
   .compose { display: flex; flex-direction: column; gap: 1rem; justify-content: center; padding-inline: clamp(18px, 3vw, 48px); }
-  .compose__q { font-family: var(--sc-font-display); font-stretch: 106%; font-weight: 600; font-size: clamp(1.15rem, 0.9rem + 1vw, 1.6rem); margin: 0; letter-spacing: -0.015em; }
+  .compose__q { font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.15rem, 0.9rem + 1vw, 1.6rem); margin: 0; letter-spacing: -0.015em; }
   .field {
     min-height: 7.5rem; padding: 1rem 1.1rem; border-radius: 14px; background: var(--well);
     border: 1px solid color-mix(in oklab, var(--sc-accent) 45%, transparent);
@@ -343,7 +357,7 @@
   /* ------------------------------------------------------ 3 · PERFIL (peak) */
   .win--profile { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr); }
   .prof { display: flex; flex-direction: column; gap: 0.9rem; }
-  .prof__title { margin: 0; font-family: var(--sc-font-display); font-stretch: 106%; font-weight: 600; font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.45rem); letter-spacing: -0.01em; }
+  .prof__title { margin: 0; font-family: var(--sc-font-display); font-weight: 600; font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.45rem); letter-spacing: -0.01em; }
   .prof textarea {
     width: 100%; min-height: 9rem; resize: none; padding: 0.95rem 1rem; border-radius: 14px;
     background: var(--well); color: var(--sc-ink); border: 1px solid var(--sc-hairline-strong);
@@ -398,7 +412,7 @@
   .wb text.soft { fill: var(--sc-ink-soft); font-size: 13px; }
   .wb text.on { opacity: 1; }
   .wb .bulb { transition: fill 240ms var(--sc-ease-out); fill: transparent; }
-  .wb .bulb.lit { fill: color-mix(in oklab, var(--sc-accent) 35%, transparent); }
+  .wb .bulb.lit { fill: color-mix(in oklab, var(--sc-accent) 85%, transparent); }
 
   /* ------------------------------------------------------- 5 · ACTIVIDADES */
   .stage--rail { display: flex; align-items: center; }
@@ -407,7 +421,7 @@
   .rail { align-items: center; }
   .act { max-height: 100%; overflow: auto; }
   .rail__lead { width: min(24rem, 80vw); display: flex; flex-direction: column; justify-content: center; gap: 0.9rem; padding-right: 1rem; }
-  .rail__lead h2 { margin: 0; font-family: var(--sc-font-display); font-stretch: 110%; font-weight: 650; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.3rem); letter-spacing: -0.02em; line-height: 1.06; }
+  .rail__lead h2 { margin: 0; font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.3rem); letter-spacing: -0.02em; line-height: 1.06; }
   .rail__lead p { margin: 0; color: var(--sc-ink-soft); }
   .act { width: min(30rem, 84vw); display: flex; flex-direction: column; gap: 0.9rem; padding: clamp(16px, 1.8vw, 24px); }
   .act__q { margin: 0; font-size: 1.05rem; line-height: 1.4; font-weight: 500; }
@@ -421,7 +435,7 @@
   .opt:hover { border-color: var(--sc-hairline-strong); }
   .opt .k { font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-soft); width: 1.1rem; }
   .opt.right { border-color: var(--sc-accent); background: var(--accent-wash); }
-  .opt.wrong { border-color: #c4643f; }
+  .opt.wrong { border-color: var(--attn); }
   .feedback { min-height: 3em; margin: 0; font-size: 0.86rem; color: var(--sc-ink-soft); line-height: 1.5; }
   .feedback b { color: var(--sc-ink); }
   .sim svg { width: 100%; height: auto; background: var(--well); border-radius: 12px; border: 1px solid var(--sc-hairline); }
@@ -445,7 +459,7 @@
   .help { padding-block: clamp(3rem, 7vw, 6rem) clamp(4rem, 8vw, 7rem); }
   .win--help { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); }
   .help__head { display: flex; flex-direction: column; gap: 0.9rem; }
-  .help__head h2 { margin: 0; font-family: var(--sc-font-display); font-stretch: 110%; font-weight: 650; font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.05; }
+  .help__head h2 { margin: 0; font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.05; }
   .help__head p { margin: 0; color: var(--sc-ink-soft); max-width: 34ch; }
   .search { display: flex; align-items: center; gap: 0.6rem; height: 40px; padding-inline: 0.8rem; border-radius: 10px; background: var(--well); border: 1px solid var(--sc-hairline-strong); }
   .search input { flex: 1; min-width: 0; background: none; border: 0; color: var(--sc-ink); font: inherit; font-size: 0.9rem; }
@@ -463,7 +477,7 @@
   /* ------------------------------------------------------------ 7 · ENTRAR */
   .win--enter { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
   .login { display: flex; flex-direction: column; justify-content: center; gap: 1rem; padding-inline: clamp(18px, 4vw, 64px); }
-  .login h2 { margin: 0; font-family: var(--sc-font-display); font-stretch: 110%; font-weight: 700; font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.04; }
+  .login h2 { margin: 0; font-family: var(--sc-font-display); font-weight: 700; font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.04; }
   .login__row { display: flex; gap: 0.5rem; }
   .login input {
     flex: 1; min-width: 0; height: 52px; padding-inline: 1rem; border-radius: 12px;
@@ -474,10 +488,10 @@
   .login input::placeholder { font-family: var(--sc-font-text); letter-spacing: 0; color: color-mix(in oklab, var(--sc-ink-soft) 85%, transparent); }
   .login .btn { height: 52px; padding-inline: 1.4rem; font-size: 0.95rem; }
   .login__status { margin: 0; font-size: 0.86rem; color: var(--sc-ink-soft); min-height: 1.5em; }
-  .login__status.err { color: #e59a74; }
+  .login__status.err { color: var(--attn); }
   .login__small { margin: 0; font-size: 0.84rem; color: var(--sc-ink-soft); }
   .join { display: flex; flex-direction: column; justify-content: center; gap: 0.9rem; background: var(--well); padding-inline: clamp(18px, 3vw, 48px); }
-  .join h3 { margin: 0; font-family: var(--sc-font-display); font-stretch: 106%; font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
+  .join h3 { margin: 0; font-family: var(--sc-font-display); font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
   .join p { margin: 0; color: var(--sc-ink-soft); font-size: 0.95rem; line-height: 1.55; max-width: 36ch; }
   .join ol { margin: 0; padding-left: 1.2rem; color: var(--sc-ink); font-size: 0.92rem; line-height: 1.7; }
   .join ol li::marker { color: var(--sc-accent); font-family: var(--sc-font-mono); font-size: 0.8rem; }
@@ -573,7 +587,7 @@
 
 <header class="appbar">
   <a class="brand" href="#clase" aria-label="EchoMentor AI, inicio">
-    <img src="assets/uetc-mark-64.png" alt="" width="22" height="24">
+    <img src="assets/uetc-symbol-eco.svg" alt="" width="30" height="30" style="margin:-3px">
     <span class="brand__name">EchoMentor <b>AI</b></span>
     <span class="brand__by">by UETC</span>
   </a>
@@ -596,7 +610,7 @@
 <main>
 
   <!-- 1 · CURIOSITY: a class already running -->
-  <section id="clase" data-sc-act="pin" data-sc-span="1.3" data-sc-drift="#0c0e0b">
+  <section id="clase" data-sc-act="pin" data-sc-span="1.3" data-sc-drift="#120C33">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--class" data-state="clase">
@@ -679,7 +693,7 @@
   </section>
 
   <!-- 2 · MOMENTUM: one sentence becomes a syllabus -->
-  <section id="temario" data-sc-act="pin" data-sc-span="2.2" data-sc-drift="#0d100c">
+  <section id="temario" data-sc-act="pin" data-sc-span="2.2" data-sc-drift="#130D36">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--compose" data-state="temario">
@@ -720,7 +734,7 @@
   </section>
 
   <!-- 3 · WONDER (the peak): the profile rewrites the course -->
-  <section id="perfil" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#0e110c">
+  <section id="perfil" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#140E39">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--profile" data-state="perfil">
@@ -762,7 +776,7 @@
   </section>
 
   <!-- 4 · COMPANY: teacher, classmates and the whiteboard -->
-  <section id="pizarron" data-sc-act="pin" data-sc-span="2" data-sc-drift="#0d0f0b">
+  <section id="pizarron" data-sc-act="pin" data-sc-span="2" data-sc-drift="#130D35">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--board" data-state="pizarron">
@@ -803,7 +817,7 @@
   </section>
 
   <!-- 5 · PLAY: activities you can operate -->
-  <section id="actividades" data-sc-act="pan" data-sc-span="3" data-sc-drift="#0c0e0b">
+  <section id="actividades" data-sc-act="pan" data-sc-span="3" data-sc-drift="#120C33">
     <div data-sc-stage class="stage stage--rail">
       <div class="rail" data-sc-pan="0.04">
         <div class="rail__lead">
@@ -872,7 +886,7 @@
   </section>
 
   <!-- 6 · CLARITY: the help panel -->
-  <section id="ayuda" class="help" data-sc-act="flow" data-sc-drift="#0d0f0c">
+  <section id="ayuda" class="help" data-sc-act="flow" data-sc-drift="#130D37">
     <div class="sc-wrap" style="padding-inline: clamp(12px, 2.4vw, 28px); max-width: 84rem;">
       <div class="win win--help">
         <div class="pane help__head">
@@ -902,7 +916,7 @@
   </section>
 
   <!-- 7 · DECISION: an actual input -->
-  <section id="entrar" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#0c0e0b">
+  <section id="entrar" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#120C33">
     <div data-sc-stage class="stage">
       <div class="frame">
         <div class="win win--enter" data-state="entrar">
