@@ -10,7 +10,7 @@ Built with **scroll-craft** (nateherkai/scroll-craft @0b81622, MIT). Engine copi
 | Audience | Club UETC members (gamedev learners in MX/LATAM) and newcomers who should join the Club |
 | Grammar | **Live surface** ("Superficie viva") |
 | Style | Premium dark and refined ("Premium oscuro y fino") |
-| Domain | echomentor.jorgesuarez.com.mx |
+| Domain | echomentor.uetc.mx (desde 2026-10-19; echomentor.jorgesuarez.com.mx redirige aquí) |
 | How newcomers get access | Join the Club UETC (club.uetc.mx, free). Zero backend in the landing |
 | Must have | Clear features, members login area, connector into the platform, public repo |
 

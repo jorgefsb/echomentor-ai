@@ -2,7 +2,7 @@
 
 Landing pública de **EchoMentor AI**, la plataforma de aprendizaje adaptativo con IA de **UETC · Arden A.C.**
 
-**En vivo:** https://echomentor.jorgesuarez.com.mx
+**En vivo:** https://echomentor.uetc.mx
 
 La página se comporta como el producto: una clase ya corriendo, un temario que se arma solo, un perfil del Aprendiz que reescribe el curso, un pizarrón que se dibuja y actividades que funcionan de verdad. Todo con datos de ejemplo, marcado como demo en la propia página.
 
