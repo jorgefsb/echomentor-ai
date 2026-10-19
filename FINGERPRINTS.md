@@ -4,7 +4,7 @@ Regla (scroll-craft `references/uniqueness.md`): cada build nuevo debe diferir d
 
 | Build | Grammar | Nav treatment | Hero device | Act-sequence shape | Close pattern | Signature move | World | Port |
 |---|---|---|---|---|---|---|---|---|
-| EchoMentor AI (2026-09-26) | Live surface | App chrome: tab strip con indicador + status bar inferior | La superficie ya corriendo (clase en vivo) + popover de bienvenida | 7 actos: pin, pin, pin (pico, span 3.2), pin, pan, flow, pin | Input real: campo de código que hace POST al conector | El perfil que reescribe la clase | Oscuro verde UETC, #0c0e0b + #92bf1f | echomentor.jorgesuarez.com.mx |
+| EchoMentor AI (2026-09-26) | Live surface | App chrome: tab strip con indicador + status bar inferior | La superficie ya corriendo (clase en vivo) + popover de bienvenida | 7 actos: pin, pin, pin (pico, span 3.2), pin, pan, flow, pin | Input real: campo de código que hace POST al conector | El perfil que reescribe la clase | Noche Arden + amarillo UETC, #120C33 + #F6D023 (desde 2026-10-19; antes #0c0e0b + #92bf1f) | echomentor.uetc.mx |
 
 ## What is taken
 

@@ -21,10 +21,14 @@ El formulario de acceso hace un `POST` normal (funciona sin JavaScript) al conec
 | `index.html` | La página completa: marcado, estilos y lógica de la demo |
 | `i18n.js` | Traducciones (es · en · ro) y datos de la demo por idioma |
 | `scrollcraft.js` / `scrollcraft.css` | Motor de scroll, sin modificar |
-| `assets/` | Marca UETC, favicon e imagen para compartir |
+| `assets/` | Símbolo oficial UETC, ícono de app, fuentes, cielo de noche e imagen para compartir |
 | `BRIEF.md` | Brief de diseño: gramática, curva de emoción, pico y movimiento firma |
 | `FINGERPRINTS.md` | Registro de huellas para que la siguiente landing no sea un calco de esta |
 | `CNAME` | Dominio de GitHub Pages |
+
+## Marca
+
+Sigue el [brandkit de Arden v2.4](https://brandkit.uetc.mx) como pieza de UETC: fondo noche `#120C33`, acento amarillo UETC `#F6D023`, Montserrat para títulos y Rubik para texto, símbolo de puntos de UETC. El amarillo solo va en trazos, números, pines y botones; los rellenos de selección usan el índigo del brandkit.
 
 ## Local
 
@@ -35,5 +39,5 @@ npx serve .   # o cualquier servidor estático
 ## Créditos
 
 - Hecha con [scroll-craft](https://github.com/nateherkai/scroll-craft) (MIT, © Nate Herk). Ver `THIRD_PARTY_LICENSE-scrollcraft.txt`.
-- Tipografías: Archivo y Geist vía Google Fonts.
+- Tipografías: Montserrat y Rubik (OFL), autoalojadas en `assets/fonts/`, tal como las entrega el [brandkit de Arden](https://brandkit.uetc.mx).
 - © 2026 UETC · Arden A.C. Todos los derechos reservados sobre marca y contenido.
