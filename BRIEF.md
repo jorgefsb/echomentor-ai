@@ -65,7 +65,7 @@ Feature claims were checked against the running platform on 2026-09-26.
 
 ## Connector
 
-`<form method="post" action="https://uetc.jorgesuarez.com.mx/api/access-code/enter">` (platform v1.4.0).
+`<form method="post" action="https://mentor.uetc.mx/api/access-code/enter">` (platform v1.4.0).
 Validates the code server-side, sets the signed session cookie, 303 into the app.
 Failure returns to `/?acceso=invalido#entrar`. Code never travels in a URL; works without JavaScript.
 
