@@ -41,3 +41,18 @@ npx serve .   # o cualquier servidor estático
 - Hecha con [scroll-craft](https://github.com/nateherkai/scroll-craft) (MIT, © Nate Herk). Ver `THIRD_PARTY_LICENSE-scrollcraft.txt`.
 - Tipografías: Montserrat y Rubik (OFL), autoalojadas en `assets/fonts/`, tal como las entrega el [brandkit de Arden](https://brandkit.uetc.mx).
 - © 2026 UETC · Arden A.C. Todos los derechos reservados sobre marca y contenido.
+
+<!-- HERDR-CONTEXT:START -->
+## Contexto del proyecto y clasificación en Herdr
+
+Presentación web de EchoMentor, producto educativo de UETC/Arden.
+
+**Espacio:** `02 LAB | ARD | EchoMentor`. **Unidad:** Arden / UETC / Brandcade.
+
+### Clasificación
+
+La etiqueta LAB identifica una clasificación de catálogo pendiente de revalidación; no implica inactividad. Los números ordenan navegación; no son un ranking de ingresos.
+
+Se conserva la documentación original y el crédito a sus autores. Esta sección no certifica disponibilidad actual ni modifica el runtime. Actualizada el 28-oct-2026.
+
+<!-- HERDR-CONTEXT:END -->
