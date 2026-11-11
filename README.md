@@ -4,10 +4,10 @@
 
 > Public landing page for EchoMentor AI, the adaptive learning platform with AI by UETC · Arden A.C.
 
-**[▶ Open the landing page](https://echomentor.uetc.mx)** · UETC · Arden A.C.
+**[▶ Open the landing page](https://echomentor.uetc.mx/?lang=en)** · UETC · Arden A.C.
 
 <p align="center"><img src="docs/readme/tour.gif" width="720" alt="Walkthrough of EchoMentor AI · landing"></p>
-<p align="center"><sub>Real walkthrough of the live site, recorded 10 Nov 2026 in Chromium (1280×720). No retouching. <a href="docs/readme/tour.mp4">Watch the MP4 video</a></sub></p>
+<p align="center"><sub>Real walkthrough of the live site, recorded 10 Nov 2026 in Chromium (1280×720). No retouching. It plays once; reload the page to watch it again. <a href="docs/readme/tour.mp4">Watch the MP4 video</a></sub></p>
 
 ## What is it?
 
@@ -27,7 +27,7 @@ The page behaves like the product: a class already running, a syllabus that buil
 
 ## How do I use it?
 
-1. Open [echomentor.uetc.mx](https://echomentor.uetc.mx) and scroll down the page.
+1. Open [echomentor.uetc.mx](https://echomentor.uetc.mx/?lang=en) and scroll down the page.
 2. Switch language with ES · EN · RO, or go straight in with `?lang=es`, `?lang=en` or `?lang=ro`.
 3. If you have an access code, type it into the form and you enter the platform.
 4. If you do not have a code, join [Club UETC](https://club.uetc.mx) for free.
@@ -40,7 +40,7 @@ The landing page is not the platform: what you see here is a demonstration with 
 
 ## Where can I try it?
 
-Live: **[echomentor.uetc.mx](https://echomentor.uetc.mx)**
+Live: **[echomentor.uetc.mx](https://echomentor.uetc.mx/?lang=en)**
 
 <p align="center">
   <img src="docs/readme/desktop.jpg" width="620" alt="EchoMentor AI · landing on desktop">
